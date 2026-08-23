@@ -2,6 +2,12 @@
 
 **Visual Studio Code extension** that displays DeepSeek API peak/off-peak status as a separate status bar item — helping you optimize API costs by choosing the right time to run your workloads.
 
+<p align="center">
+  <img src="assets/preview.png" alt="DeepSeek Peak Hours Preview" width="414" />
+  <br />
+  <sub>Real-time status hover preview in Dark Theme</sub>
+</p>
+
 ## Why This Extension Matters
 
 DeepSeek API uses **peak/off-peak pricing** to manage resource allocation efficiently. During peak hours, prices are **2×** the regular rate across all billing items. Off-peak rates are **half** of peak rates, making it significantly cheaper to run inference during low-traffic periods.
@@ -59,17 +65,3 @@ All other hours outside the defined peak windows are off-peak
 ## Installation
 
 Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=mervick.deepseek-peak-hours) or search for `DeepSeek Peak Hours` in the Extensions view (`Ctrl+Shift+X`).
-
----
-
-## License
-
-[MIT](LICENSE)
-
----
-
-## Links
-
-- [Marketplace](https://marketplace.visualstudio.com/items?itemName=mervick.deepseek-peak-hours)
-- [Repository](https://github.com/mervick/deepseek-peak-hours)
-- [DeepSeek API Pricing](https://api-docs.deepseek.com/quick_start/pricing/)
