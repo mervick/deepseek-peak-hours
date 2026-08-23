@@ -38,6 +38,7 @@ const TOOLTIP_COLORS = {
   text: '#eee',
   textMuted: '#aaa',
   textDim: '#777',
+  textDim1: '#888',
   marker: '#fff',
   legend: '#bbb',
 };
@@ -149,7 +150,7 @@ function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString 
   const time = `${date.toISOString().replace('T', ' ').slice(0, 19)} UTC`;
   const transitionTime = next ? new Date(next.time).toISOString().slice(11, 16) : '—';
 
-  const timeScale = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'].map((label, index) => `<text x="${barX + (index / 6) * barW}" y="${barY + barH + 24 - 5}" fill="#888" font-family="Segoe UI,sans-serif" font-size="9" text-anchor="${index === 0 ? 'start' : index === 6 ? 'end' : 'middle'}">${label}</text>`).join('');
+  const timeScale = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'].map((label, index) => `<text x="${barX + (index / 6) * barW}" y="${barY + barH + 24 - 5}" fill="${TOOLTIP_COLORS.textDim1}" font-family="Segoe UI,sans-serif" font-size="9" text-anchor="${index === 0 ? 'start' : index === 6 ? 'end' : 'middle'}">${label}</text>`).join('');
   const description = t('peakHours.tooltip.description');
   const descriptionParts = description.split('|');
 
