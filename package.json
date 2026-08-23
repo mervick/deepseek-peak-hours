@@ -2,7 +2,7 @@
   "name": "deepseek-peak-hours",
   "displayName": "DeepSeek Peak Hours",
   "description": "Show DeepSeek peak and off-peak hours in the VS Code status bar",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "mervick",
   "author": {
     "name": "Andrey Izman",
@@ -92,8 +92,8 @@
   "scripts": {
     "compile": "tsc -p ./ && esbuild out/*.js --outdir=out --minify --sourcemap --allow-overwrite",
     "watch": "tsc -watch -p ./",
-    "build": "npm run compile && npx --yes @vscode/vsce package --no-dependencies",
-    "publish": "npm run compile && npx --yes @vscode/vsce publish",
+    "build": "rm -rf out && npm run compile && npx --yes @vscode/vsce package --no-dependencies",
+    "publish": "rm -rf out && npm run compile && npx --yes @vscode/vsce publish",
     "vscode:prepublish": "npm run compile"
   },
   "devDependencies": {
