@@ -1,16 +1,12 @@
 {
-  "deepseek-peak-hours.config.peakHoursShow.title": "显示 DeepSeek 高峰时段状态",
-  "deepseek-peak-hours.config.peakHoursShow.description": "显示单独的 DeepSeek 高峰/非高峰时段状态栏项目（UTC，周一至周五）。",
   "deepseek-peak-hours.config.peakHoursDebug.title": "启用高峰时段调试日志",
   "deepseek-peak-hours.config.peakHoursDebug.description": "将模拟时间、轮询间隔变化、状态切换和通知写入 Extension Host 日志。",
   "deepseek-peak-hours.config.peakHoursDebugUtcTime.title": "高峰时段调试 UTC 时间",
   "deepseek-peak-hours.config.peakHoursDebugUtcTime.description": "仅用于调试。设置模拟 UTC 起始时间，之后按真实经过时间继续计时。",
   "deepseek-peak-hours.config.peakSoonMinutes.title": "Peak soon 提示窗口",
-  "deepseek-peak-hours.config.peakSoonMinutes.description": "Peak 开始前多少分钟显示 Peak soon（0-60）。",
-  "deepseek-peak-hours.config.boundaryRefreshMinutes.title": "Peak 边界刷新窗口",
-  "deepseek-peak-hours.config.boundaryRefreshMinutes.description": "每个 Peak 状态切换前后多少分钟改为每 30 秒检查一次（0-60）。",
+  "deepseek-peak-hours.config.peakSoonMinutes.description": "Peak 开始前多少分钟显示 Peak soon（0-30）。",
   "deepseek-peak-hours.config.peakTransitionBufferMinutes.title": "Peak 状态过渡缓冲时间",
-  "deepseek-peak-hours.config.peakTransitionBufferMinutes.description": "Peak 开始前提前多少分钟开启（0-60）。",
+  "deepseek-peak-hours.config.peakTransitionBufferMinutes.description": "Peak 开始前提前多少分钟开启（0-20）。",
   "deepseek-peak-hours.config.postPeakMinutes.title": "Peak 后黄色过渡时段",
-  "deepseek-peak-hours.config.postPeakMinutes.description": "Peak 结束后多少分钟保持黄色过渡状态（0-60）。"
+  "deepseek-peak-hours.config.postPeakMinutes.description": "Peak 结束后多少分钟保持黄色过渡状态（0-20）。"
 }

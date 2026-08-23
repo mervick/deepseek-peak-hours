@@ -1,16 +1,15 @@
 import * as vscode from 'vscode';
 import {
-  getPeakBoundaryRefreshMinutes,
   getPeakHoursNow,
   getPeakSoonMinutes,
   getPeakTransitionBufferMinutes,
   getPostPeakMinutes,
-  getShowPeakHours,
   isPeakHoursDebugEnabled,
 } from './config';
 import { t } from './i18n';
 
 const MINUTE_MS = 60_000;
+const BOUNDARY_REFRESH_MINUTES = 5;
 const NORMAL_INTERVAL_MS = 5 * MINUTE_MS;
 const BOUNDARY_INTERVAL_MS = 30_000;
 let lastPollIntervalMs: number | undefined;
@@ -71,7 +70,7 @@ function isPostPeakPeriod(date: Date): boolean {
 }
 
 function isNearBoundary(now: number, transitions: Transition[]): boolean {
-  const refreshMs = getPeakBoundaryRefreshMinutes() * MINUTE_MS;
+  const refreshMs = BOUNDARY_REFRESH_MINUTES * MINUTE_MS;
   const soonMs = getPeakSoonMinutes() * MINUTE_MS;
   return transitions.some((transition) => {
     const delta = transition.time - now;
@@ -124,17 +123,16 @@ export class PeakHoursStatusBar implements vscode.Disposable {
       vscode.StatusBarAlignment.Right,
       100
     );
+    this.item.command = {
+      command: 'workbench.action.openSettings',
+      title: 'Open DeepSeek Peak Hours settings',
+      arguments: ['@ext:mervick.deepseek-peak-hours'],
+    };
     this.item.tooltip = t('peakHours.tooltip');
     this.item.show();
   }
 
   update(date = getPeakHoursNow()): void {
-    if (!getShowPeakHours()) {
-      this.item.hide();
-      this.previousState = undefined;
-      return;
-    }
-
     const state = getPeakHoursState(date);
     const text =
       state === 'peak'
@@ -179,7 +177,9 @@ export class PeakHoursStatusBar implements vscode.Disposable {
     } else if (state === 'approaching' && previous !== 'peak') {
       // Do not notify when the clock moves from Peak back to Peak soon.
       if (isPeakHoursDebugEnabled()) console.log('[deepseek-peak-hours] notification: approaching');
-      void vscode.window.showWarningMessage(t('peakHours.notification.approaching'));
+      void vscode.window.showWarningMessage(
+        t('peakHours.notification.approaching', { minutes: getPeakSoonMinutes() })
+      );
     } else if (state === 'offPeak' && previous !== 'offPeak') {
       if (isPeakHoursDebugEnabled()) console.log('[deepseek-peak-hours] notification: offPeak');
       void vscode.window.showInformationMessage(t('peakHours.notification.offPeak'));

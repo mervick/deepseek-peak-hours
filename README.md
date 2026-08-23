@@ -6,7 +6,7 @@ Peak hours are `01:00–04:00` and `06:00–10:00 UTC`, Monday through Friday. W
 
 The status is updated every five minutes normally and every 30 seconds around configured transitions. Peak is red, Peak soon and Off-peak soon are yellow, and Off-peak uses the normal theme color.
 
-Enable `deepseek-peak-hours.peakHours.debug` for logs. `deepseek-peak-hours.peakHours.debugUtcTime` is an ISO UTC start time; real elapsed time advances from it.
+Enable `deepseek-peak-hours.debug` for logs. `deepseek-peak-hours.debugUtcTime` is an ISO UTC start time; real elapsed time advances from it.
 
 Author: [Andrey Izman (mervick)](https://github.com/mervick)
 

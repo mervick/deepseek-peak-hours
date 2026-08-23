@@ -38,55 +38,46 @@
     "configuration": {
       "title": "DeepSeek Peak Hours",
       "properties": {
-        "deepseek-peak-hours.peakHours.show": {
-          "type": "boolean",
-          "default": true,
-          "title": "%deepseek-peak-hours.config.peakHoursShow.title%",
-          "description": "%deepseek-peak-hours.config.peakHoursShow.description%"
-        },
-        "deepseek-peak-hours.peakHours.debug": {
-          "type": "boolean",
-          "default": true,
-          "title": "%deepseek-peak-hours.config.peakHoursDebug.title%",
-          "description": "%deepseek-peak-hours.config.peakHoursDebug.description%"
-        },
-        "deepseek-peak-hours.peakHours.debugUtcTime": {
-          "type": "string",
-          "default": "2026-08-24T00:49:30Z",
-          "title": "%deepseek-peak-hours.config.peakHoursDebugUtcTime.title%",
-          "description": "%deepseek-peak-hours.config.peakHoursDebugUtcTime.description%"
-        },
-        "deepseek-peak-hours.peakHours.peakSoonMinutes": {
-          "type": "number",
-          "default": 10,
-          "minimum": 0,
-          "maximum": 60,
-          "title": "%deepseek-peak-hours.config.peakSoonMinutes.title%",
-          "description": "%deepseek-peak-hours.config.peakSoonMinutes.description%"
-        },
-        "deepseek-peak-hours.peakHours.boundaryRefreshMinutes": {
+        "deepseek-peak-hours.peakSoonMinutes": {
+          "order": 1,
           "type": "number",
           "default": 5,
           "minimum": 0,
-          "maximum": 60,
-          "title": "%deepseek-peak-hours.config.boundaryRefreshMinutes.title%",
-          "description": "%deepseek-peak-hours.config.boundaryRefreshMinutes.description%"
+          "maximum": 30,
+          "title": "%deepseek-peak-hours.config.peakSoonMinutes.title%",
+          "description": "%deepseek-peak-hours.config.peakSoonMinutes.description%"
         },
-        "deepseek-peak-hours.peakHours.peakTransitionBufferMinutes": {
+        "deepseek-peak-hours.peakTransitionBufferMinutes": {
+          "order": 2,
           "type": "number",
           "default": 1,
           "minimum": 0,
-          "maximum": 60,
+          "maximum": 20,
           "title": "%deepseek-peak-hours.config.peakTransitionBufferMinutes.title%",
           "description": "%deepseek-peak-hours.config.peakTransitionBufferMinutes.description%"
         },
-        "deepseek-peak-hours.peakHours.postPeakMinutes": {
+        "deepseek-peak-hours.postPeakMinutes": {
+          "order": 3,
           "type": "number",
-          "default": 2,
+          "default": 5,
           "minimum": 0,
-          "maximum": 60,
+          "maximum": 20,
           "title": "%deepseek-peak-hours.config.postPeakMinutes.title%",
           "description": "%deepseek-peak-hours.config.postPeakMinutes.description%"
+        },
+        "deepseek-peak-hours.debug": {
+          "order": 100,
+          "type": "boolean",
+          "default": false,
+          "title": "%deepseek-peak-hours.config.peakHoursDebug.title%",
+          "description": "%deepseek-peak-hours.config.peakHoursDebug.description%"
+        },
+        "deepseek-peak-hours.debugUtcTime": {
+          "order": 101,
+          "type": "string",
+          "default": "",
+          "title": "%deepseek-peak-hours.config.peakHoursDebugUtcTime.title%",
+          "description": "%deepseek-peak-hours.config.peakHoursDebugUtcTime.description%"
         }
       }
     }
