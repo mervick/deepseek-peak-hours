@@ -1,0 +1,10 @@
+{
+  "peakHours.peak": "Peak",
+  "peakHours.approaching": "Peak soon",
+  "peakHours.postPeak": "Off-peak soon",
+  "peakHours.offPeak": "Off-peak",
+  "peakHours.tooltip": "DeepSeek 高峰时段：周一至周五 UTC 01:00-04:00、06:00-10:00；周末为非高峰时段",
+  "peakHours.notification.approaching": "DeepSeek 高峰时段将在 10 分钟内开始。",
+  "peakHours.notification.peak": "DeepSeek 高峰时段现已开始。",
+  "peakHours.notification.offPeak": "DeepSeek 高峰时段已结束，现为非高峰时段。"
+}

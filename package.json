@@ -1,0 +1,106 @@
+{
+  "name": "deepseek-peak-hours",
+  "displayName": "DeepSeek Peak Hours",
+  "description": "Show DeepSeek peak and off-peak hours in the VS Code status bar",
+  "version": "0.1.0",
+  "publisher": "mervick",
+  "author": {
+    "name": "Andrey Izman",
+    "email": "izmanw@gmail.com",
+    "url": "https://github.com/mervick"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mervick/deepseek-peak-hours.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mervick/deepseek-peak-hours/issues"
+  },
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "icons": {
+      "deepseek-logo": {
+        "description": "DeepSeek logo",
+        "default": {
+          "fontPath": "./media/deepseek-icons.ttf",
+          "fontCharacter": "\\E001"
+        }
+      }
+    },
+    "configuration": {
+      "title": "DeepSeek Peak Hours",
+      "properties": {
+        "deepseek-peak-hours.peakHours.show": {
+          "type": "boolean",
+          "default": true,
+          "title": "%deepseek-peak-hours.config.peakHoursShow.title%",
+          "description": "%deepseek-peak-hours.config.peakHoursShow.description%"
+        },
+        "deepseek-peak-hours.peakHours.debug": {
+          "type": "boolean",
+          "default": true,
+          "title": "%deepseek-peak-hours.config.peakHoursDebug.title%",
+          "description": "%deepseek-peak-hours.config.peakHoursDebug.description%"
+        },
+        "deepseek-peak-hours.peakHours.debugUtcTime": {
+          "type": "string",
+          "default": "2026-08-24T00:49:30Z",
+          "title": "%deepseek-peak-hours.config.peakHoursDebugUtcTime.title%",
+          "description": "%deepseek-peak-hours.config.peakHoursDebugUtcTime.description%"
+        },
+        "deepseek-peak-hours.peakHours.peakSoonMinutes": {
+          "type": "number",
+          "default": 10,
+          "minimum": 0,
+          "maximum": 60,
+          "title": "%deepseek-peak-hours.config.peakSoonMinutes.title%",
+          "description": "%deepseek-peak-hours.config.peakSoonMinutes.description%"
+        },
+        "deepseek-peak-hours.peakHours.boundaryRefreshMinutes": {
+          "type": "number",
+          "default": 5,
+          "minimum": 0,
+          "maximum": 60,
+          "title": "%deepseek-peak-hours.config.boundaryRefreshMinutes.title%",
+          "description": "%deepseek-peak-hours.config.boundaryRefreshMinutes.description%"
+        },
+        "deepseek-peak-hours.peakHours.peakTransitionBufferMinutes": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 60,
+          "title": "%deepseek-peak-hours.config.peakTransitionBufferMinutes.title%",
+          "description": "%deepseek-peak-hours.config.peakTransitionBufferMinutes.description%"
+        },
+        "deepseek-peak-hours.peakHours.postPeakMinutes": {
+          "type": "number",
+          "default": 2,
+          "minimum": 0,
+          "maximum": 60,
+          "title": "%deepseek-peak-hours.config.postPeakMinutes.title%",
+          "description": "%deepseek-peak-hours.config.postPeakMinutes.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "publish": "npm run compile && vsce publish",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.3.0"
+  }
+}

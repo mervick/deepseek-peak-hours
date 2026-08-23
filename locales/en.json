@@ -1,0 +1,10 @@
+{
+  "peakHours.peak": "Peak",
+  "peakHours.approaching": "Peak soon",
+  "peakHours.postPeak": "Off-peak soon",
+  "peakHours.offPeak": "Off-peak",
+  "peakHours.tooltip": "DeepSeek peak hours: 01:00-04:00 and 06:00-10:00 UTC, Monday-Friday. Weekends are off-peak.",
+  "peakHours.notification.approaching": "DeepSeek peak hours start in less than 10 minutes.",
+  "peakHours.notification.peak": "DeepSeek peak hours are now active.",
+  "peakHours.notification.offPeak": "DeepSeek peak hours have ended. Off-peak hours are now active."
+}
