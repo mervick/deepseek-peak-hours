@@ -3,7 +3,7 @@
 [![VS Code Marketplace](https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=mervick.deepseek-peak-hours)
 [![VS Code version](https://img.shields.io/badge/VS%20Code-^1.85.0-blue?logo=visualstudiocode)](https://code.visualstudio.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![No API Key Required](https://img.shields.io/badge/No%20API%20Key-Required%3F%20No!-brightgreen)](https://github.com/mervick/deepseek-peak-hours)
+[![No API Key Required](https://img.shields.io/badge/No%20API%20Key-Required?%20No!-brightgreen)](https://github.com/mervick/deepseek-peak-hours)
 [![Offline First](https://img.shields.io/badge/Offline-100%25-blue)](https://github.com/mervick/deepseek-peak-hours)
 
 **Visual Studio Code extension** that displays DeepSeek API peak/off-peak status directly in your status bar — helping you optimize API costs by choosing the right time to run your workloads.
