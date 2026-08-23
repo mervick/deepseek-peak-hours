@@ -1,5 +1,8 @@
 # DeepSeek Peak Hours
 
+[![VS Code Marketplace](https://img.shields.io/vscode-marketplace/v/mervick.deepseek-peak-hours.svg?label=VS%20Code%20Marketplace&logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=mervick.deepseek-peak-hours)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 **Visual Studio Code extension** that displays DeepSeek API peak/off-peak status as a separate status bar item — helping you optimize API costs by choosing the right time to run your workloads.
 
 <p align="center">
@@ -21,7 +24,7 @@ Being aware of when peak hours occur helps you:
 - **Avoid throttling** — peak periods may experience higher latency and stricter rate limits
 - **Plan development** — align your API usage with cost-effective time windows
 
-> 📘 **Official pricing details:** [DeepSeek API Models & Pricing](https://api-docs.deepseek.com/quick_start/pricing/)
+> **Official pricing details:** [DeepSeek API Models & Pricing](https://api-docs.deepseek.com/quick_start/pricing/)
 
 ---
 
@@ -42,11 +45,12 @@ All other hours outside the defined peak windows are off-peak
 - **Real‑time status** — displays Peak / Peak soon / Off‑peak soon / Off‑peak in the VS Code status bar
 
 - **Color‑coded alerts**:
-  - 🟥 **Peak** - Peak hours (higher cost, higher latency)
-  - 🟨 **Buffer / soon** - Transition period (Peak soon or Off‑peak soon)
-  - **Off‑peak** - lower cost, better performance
-- **Smart refresh** - updates every 5 minutes normally, and every **30 seconds** near scheduled transitions
-- **Debug mode** - enable `deepseek-peak-hours.debug` for detailed logs; `deepseek-peak-hours.debugUtcTime` accepts an ISO UTC start time to simulate elapsed time
+  - 🟥 **Peak** — Peak hours (higher cost, higher latency)
+  - 🟨 **Buffer / soon** — Transition period (Peak soon or Off‑peak soon)
+  - **Off‑peak** — lower cost, better performance
+- **Hover preview** — hover over the status bar item to see a detailed dashboard with a countdown timer, timeline, and impact forecast.
+- **Smart refresh** — updates every 5 minutes normally, and every **30 seconds** near scheduled transitions
+- **Debug mode** — enable `deepseek-peak-hours.debug` for detailed logs; `deepseek-peak-hours.debugUtcTime` accepts an ISO UTC start time to simulate elapsed time
 
 ---
 
@@ -61,6 +65,12 @@ All other hours outside the defined peak windows are off-peak
 | `deepseek-peak-hours.debugUtcTime` | string | `""` | ISO UTC start time for time simulation in debug mode |
 
 ---
+
+## Requirements
+
+- Visual Studio Code 1.129 or later
+- No DeepSeek API key is required
+- Internet access is not required
 
 ## Installation
 
