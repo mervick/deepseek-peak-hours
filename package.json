@@ -38,8 +38,15 @@
     "configuration": {
       "title": "DeepSeek Peak Hours",
       "properties": {
-        "deepseek-peak-hours.peakSoonMinutes": {
+        "deepseek-peak-hours.notifications": {
           "order": 1,
+          "type": "boolean",
+          "default": true,
+          "title": "%deepseek-peak-hours.config.notifications.title%",
+          "description": "%deepseek-peak-hours.config.notifications.description%"
+        },
+        "deepseek-peak-hours.peakSoonMinutes": {
+          "order": 2,
           "type": "number",
           "default": 5,
           "minimum": 0,
@@ -48,7 +55,7 @@
           "description": "%deepseek-peak-hours.config.peakSoonMinutes.description%"
         },
         "deepseek-peak-hours.peakTransitionBufferMinutes": {
-          "order": 2,
+          "order": 3,
           "type": "number",
           "default": 1,
           "minimum": 0,
@@ -57,7 +64,7 @@
           "description": "%deepseek-peak-hours.config.peakTransitionBufferMinutes.description%"
         },
         "deepseek-peak-hours.postPeakMinutes": {
-          "order": 3,
+          "order": 4,
           "type": "number",
           "default": 5,
           "minimum": 0,

@@ -8,5 +8,7 @@
   "deepseek-peak-hours.config.peakTransitionBufferMinutes.title": "Peak 状态过渡缓冲时间",
   "deepseek-peak-hours.config.peakTransitionBufferMinutes.description": "Peak 开始前提前多少分钟开启（0-20）。",
   "deepseek-peak-hours.config.postPeakMinutes.title": "Peak 后黄色过渡时段",
-  "deepseek-peak-hours.config.postPeakMinutes.description": "Peak 结束后多少分钟保持黄色过渡状态（0-20）。"
+  "deepseek-peak-hours.config.postPeakMinutes.description": "Peak 结束后多少分钟保持黄色过渡状态（0-20）。",
+  "deepseek-peak-hours.config.notifications.title": "显示状态切换通知",
+  "deepseek-peak-hours.config.notifications.description": "高峰时段状态发生变化时显示通知。"
 }

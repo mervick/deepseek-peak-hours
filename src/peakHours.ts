@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import {
+  getConfig,
   getPeakHoursNow,
   getPeakSoonMinutes,
   getPeakTransitionBufferMinutes,
@@ -297,6 +298,7 @@ export class PeakHoursStatusBar implements vscode.Disposable {
     if (isPeakHoursDebugEnabled()) {
       console.log('[deepseek-peak-hours] state transition:', previous, '->', state);
     }
+    if (!getConfig().get<boolean>('notifications', true)) return;
 
     if (state === 'peak') {
       if (isPeakHoursDebugEnabled()) console.log('[deepseek-peak-hours] notification: peak');
