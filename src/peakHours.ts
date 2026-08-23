@@ -21,8 +21,8 @@ const BOUNDARY_INTERVAL_MS = 30_000;
         //   ? '#ffb900'
 
 
-const TOOLTIP_COLORS = {
-  background: '#202020',
+const DARK_COLORS = {
+  // background: '#202020',
   track: '#333',
 
   // peak: '#e5484d',
@@ -42,6 +42,29 @@ const TOOLTIP_COLORS = {
   marker: '#fff',
   legend: '#bbb',
 };
+const LIGHT_COLORS = {
+  // background: '#ffffff',
+  track: '#d0d0d0',
+  // peak: '#c62828',
+  // peak: '#D13438',
+  peak: '#e51400',
+  // buffer: '#a86100',
+  // buffer: '#BF8700',
+  buffer: '#ff9800',
+  // offPeak: '#087f5b',
+  offPeak: '#2DA44E',
+  text: '#202020',
+  textMuted: '#555555',
+  textDim: '#666666',
+  marker: '#202020',
+  legend: '#444444',
+};
+
+function getThemeColors() {
+  return vscode.window.activeColorTheme.kind === vscode.ColorThemeKind.Light
+    ? LIGHT_COLORS
+    : DARK_COLORS;
+}
 const DEEPSEEK_LOGO = fs.readFileSync(path.join(__dirname, '..', 'media', 'deepseek.svg'), 'utf8')
   .replace(/<svg[^>]*>/, '')
   .replace('</svg>', '')
@@ -131,6 +154,7 @@ function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString 
       : t('peakHours.offPeak')
     : t('peakHours.offPeak');
   const countdown = next ? formatCountdown(next.time - date.getTime()) : '—';
+  const colors = getThemeColors();
   const width = 320;
   const height = 260;
   const barX = 16;
@@ -143,34 +167,33 @@ function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString 
   const buffer = getPeakTransitionBufferMinutes();
   const postPeak = getPostPeakMinutes();
   const markerX = barX + (nowMinutes / 1440) * barW;
-  const intervals: Array<[number, number, string]> = weekday ? [[0, Math.max(0, 60 - buffer - soon), TOOLTIP_COLORS.offPeak], [Math.max(0, 60 - buffer - soon), 60 - buffer, TOOLTIP_COLORS.peak], [60 - buffer, 240, TOOLTIP_COLORS.peak], [240, 240 + postPeak, TOOLTIP_COLORS.peak], [240 + postPeak, Math.max(360 - buffer - soon, 240 + postPeak), TOOLTIP_COLORS.offPeak], [Math.max(360 - buffer - soon, 240 + postPeak), 360 - buffer, TOOLTIP_COLORS.peak], [360 - buffer, 600, TOOLTIP_COLORS.peak], [600, 600 + postPeak, TOOLTIP_COLORS.peak], [600 + postPeak, 1440, TOOLTIP_COLORS.offPeak]] : [[0, 1440, TOOLTIP_COLORS.offPeak]];
+  const intervals: Array<[number, number, string]> = weekday ? [[0, Math.max(0, 60 - buffer - soon), colors.offPeak], [Math.max(0, 60 - buffer - soon), 60 - buffer, colors.peak], [60 - buffer, 240, colors.peak], [240, 240 + postPeak, colors.peak], [240 + postPeak, Math.max(360 - buffer - soon, 240 + postPeak), colors.offPeak], [Math.max(360 - buffer - soon, 240 + postPeak), 360 - buffer, colors.peak], [360 - buffer, 600, colors.peak], [600, 600 + postPeak, colors.peak], [600 + postPeak, 1440, colors.offPeak]] : [[0, 1440, colors.offPeak]];
   const zones = intervals.filter(([from, to]) => to > from).map(([from, to, color]) => `<rect x="${barX + (from / 1440) * barW}" y="${barY}" width="${((to - from) / 1440) * barW}" height="${barH}" fill="${color}"/>`).join('');
-  const statusColor = state === 'peak' ? TOOLTIP_COLORS.peak : state === 'offPeak' ? TOOLTIP_COLORS.offPeak : TOOLTIP_COLORS.buffer;
+  const statusColor = state === 'peak' ? colors.peak : state === 'offPeak' ? colors.offPeak : colors.buffer;
   const statusIcon = state === 'peak' ? '🔥' : state === 'offPeak' ? '✓' : '⚠';
   const time = `${date.toISOString().replace('T', ' ').slice(0, 19)} UTC`;
   const transitionTime = next ? new Date(next.time).toISOString().slice(11, 16) : '—';
 
-  const timeScale = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'].map((label, index) => `<text x="${barX + (index / 6) * barW}" y="${barY + barH + 24 - 5}" fill="${TOOLTIP_COLORS.textDim1}" font-family="Segoe UI,sans-serif" font-size="9" text-anchor="${index === 0 ? 'start' : index === 6 ? 'end' : 'middle'}">${label}</text>`).join('');
+  const timeScale = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'].map((label, index) => `<text x="${barX + (index / 6) * barW}" y="${barY + barH + 24 - 5}" fill="${colors.textDim}" font-family="Segoe UI,sans-serif" font-size="9" text-anchor="${index === 0 ? 'start' : index === 6 ? 'end' : 'middle'}">${label}</text>`).join('');
   const description = t('peakHours.tooltip.description');
   const descriptionParts = description.split('|');
 
   const svg = `
     <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-      <rect width="${width}" height="${height}" fill="${TOOLTIP_COLORS.background}"/>
-      <g color="${TOOLTIP_COLORS.text}" transform="translate(16 16) scale(.32)">${DEEPSEEK_LOGO}</g>
-      <text x="36" y="28" fill="${TOOLTIP_COLORS.text}" font-family="Segoe UI,sans-serif" font-size="13" font-weight="500">Peak Hours</text>
+      <g color="${colors.text}" transform="translate(16 16) scale(.32)">${DEEPSEEK_LOGO}</g>
+      <text x="36" y="28" fill="${colors.text}" font-family="Segoe UI,sans-serif" font-size="13" font-weight="500">Peak Hours</text>
       <text x="${width - 16}" y="28" fill="${statusColor}" font-family="Segoe UI,sans-serif" font-size="11" font-weight="600" text-anchor="end">${statusIcon} ${escapeXml(status.toUpperCase())}</text>
-      <text x="${width / 2}" y="53" fill="${TOOLTIP_COLORS.textMuted}" font-family="Segoe UI,sans-serif" font-size="10" text-anchor="middle">${escapeXml(time)}</text>
-      <text x="${width / 2}" y="83" fill="${TOOLTIP_COLORS.text}" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700" text-anchor="middle">${escapeXml(countdown)}</text>
-      <text x="${width / 2}" y="104" fill="${TOOLTIP_COLORS.textMuted}" font-family="Segoe UI,sans-serif" font-size="12" text-anchor="middle">${escapeXml(t('peakHours.tooltip.transitionAt', { transition, time: transitionTime }))}</text>
-      <rect x="${barX}" y="${barY}" width="${barW}" height="${barH}" fill="${TOOLTIP_COLORS.track}"/>
+      <text x="${width / 2}" y="53" fill="${colors.textMuted}" font-family="Segoe UI,sans-serif" font-size="10" text-anchor="middle">${escapeXml(time)}</text>
+      <text x="${width / 2}" y="83" fill="${colors.text}" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700" text-anchor="middle">${escapeXml(countdown)}</text>
+      <text x="${width / 2}" y="104" fill="${colors.textMuted}" font-family="Segoe UI,sans-serif" font-size="12" text-anchor="middle">${escapeXml(t('peakHours.tooltip.transitionAt', { transition, time: transitionTime }))}</text>
+      <rect x="${barX}" y="${barY}" width="${barW}" height="${barH}" fill="${colors.track}"/>
       ${zones}
-      <line x1="${markerX}" y1="${barY - 8}" x2="${markerX}" y2="${barY + barH + 8}" stroke="${TOOLTIP_COLORS.marker}" stroke-width="2"/>
-      <text x="${markerX}" y="${barY - 12}" fill="${TOOLTIP_COLORS.marker}" font-family="Segoe UI,sans-serif" font-size="9" text-anchor="middle">${escapeXml(t('peakHours.tooltip.youAreHere'))}</text>
+      <line x1="${markerX}" y1="${barY - 8}" x2="${markerX}" y2="${barY + barH + 8}" stroke="${colors.marker}" stroke-width="2"/>
+      <text x="${markerX}" y="${barY - 12}" fill="${colors.marker}" font-family="Segoe UI,sans-serif" font-size="9" text-anchor="middle">${escapeXml(t('peakHours.tooltip.youAreHere'))}</text>
       ${timeScale}
-      <text x="16" y="${barY + barH + 40 + 4}" fill="${TOOLTIP_COLORS.legend}" font-family="Segoe UI,sans-serif" font-size="10">🟩 ${escapeXml(t('peakHours.tooltip.offPeak'))}    🟥 ${escapeXml(t('peakHours.tooltip.peak'))}</text>
-      <text x="16" y="${barY + barH + 58 + 12}" fill="${TOOLTIP_COLORS.textDim}" font-family="Segoe UI,sans-serif" font-size="9">${escapeXml(descriptionParts[0])}</text>
-      <text x="16" y="${barY + barH + 72 + 12}" fill="${TOOLTIP_COLORS.textDim}" font-family="Segoe UI,sans-serif" font-size="9">${escapeXml(descriptionParts[1] || '')}</text>
+      <text x="16" y="${barY + barH + 40 + 4}" fill="${colors.legend}" font-family="Segoe UI,sans-serif" font-size="10">🟩 ${escapeXml(t('peakHours.tooltip.offPeak'))}    🟥 ${escapeXml(t('peakHours.tooltip.peak'))}</text>
+      <text x="16" y="${barY + barH + 58 + 12}" fill="${colors.textDim}" font-family="Segoe UI,sans-serif" font-size="9">${escapeXml(descriptionParts[0])}</text>
+      <text x="16" y="${barY + barH + 72 + 12}" fill="${colors.textDim}" font-family="Segoe UI,sans-serif" font-size="9">${escapeXml(descriptionParts[1] || '')}</text>
     </svg>
   `;
 
@@ -257,11 +280,12 @@ export class PeakHoursStatusBar implements vscode.Disposable {
             : t('peakHours.offPeak');
     this.item.text = `$(deepseek-logo) ${text}`;
     this.item.tooltip = buildTooltip(date, state);
+    const colors = getThemeColors();
     this.item.color =
       state === 'peak'
-        ? '#e51400'
+        ? colors.peak // '#e51400'
         : state === 'approaching' || state === 'postPeak'
-          ? '#ffb900'
+          ? colors.buffer //'#ffb900'
           : undefined;
     this.item.show();
     this.notifyStateChange(state);
