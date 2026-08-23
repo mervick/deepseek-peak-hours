@@ -1,4 +1,6 @@
 import * as vscode from 'vscode';
+import * as fs from 'fs';
+import * as path from 'path';
 import {
   getPeakHoursNow,
   getPeakSoonMinutes,
@@ -10,8 +12,12 @@ import { t } from './i18n';
 
 const MINUTE_MS = 60_000;
 const BOUNDARY_REFRESH_MINUTES = 5;
-const NORMAL_INTERVAL_MS = 5 * MINUTE_MS;
+const NORMAL_INTERVAL_MS = 2 * MINUTE_MS;
 const BOUNDARY_INTERVAL_MS = 30_000;
+const DEEPSEEK_LOGO = fs.readFileSync(path.join(__dirname, '..', 'media', 'deepseek.svg'), 'utf8')
+  .replace(/<svg[^>]*>/, '')
+  .replace('</svg>', '')
+  .replace(/fill="#000"/g, 'fill="currentColor"');
 let lastPollIntervalMs: number | undefined;
 
 export type PeakHoursState = 'peak' | 'approaching' | 'postPeak' | 'offPeak';
@@ -76,27 +82,8 @@ function formatCountdown(ms: number): string {
   return hours ? `${hours}h ${minutes}m` : `${minutes}m`;
 }
 
-function getDayTimeline(date: Date): string {
-  const width = 48;
-  const nowMinutes = date.getUTCHours() * 60 + date.getUTCMinutes();
-  const weekday = isWeekday(date.getUTCDay());
-  const soon = getPeakSoonMinutes();
-  const buffer = getPeakTransitionBufferMinutes();
-  const postPeak = getPostPeakMinutes();
-  const cells: string[] = [];
-
-  for (let cell = 0; cell < width; cell += 1) {
-    const minute = Math.floor((cell * 24 * 60) / width);
-    const peak = weekday && ((minute >= 60 - buffer && minute < 240) || (minute >= 360 - buffer && minute < 600));
-    const post = weekday && ((minute >= 240 && minute < 240 + postPeak) || (minute >= 600 && minute < 600 + postPeak));
-    const approaching = weekday && (
-      (minute >= Math.max(0, 60 - buffer - soon) && minute < 60 - buffer) ||
-      (minute >= 360 - buffer - soon && minute < 360 - buffer)
-    );
-    const marker = Math.min(width - 1, Math.floor((nowMinutes * width) / (24 * 60)));
-    cells.push(cell === marker ? '🔻' : peak ? '🟥' : post || approaching ? '🟧' : '🟩');
-  }
-  return cells.join('');
+function escapeXml(value: string): string {
+  return value.replace(/[<&>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[char] || char));
 }
 
 function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString {
@@ -116,17 +103,32 @@ function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString 
       : t('peakHours.offPeak')
     : t('peakHours.offPeak');
   const countdown = next ? formatCountdown(next.time - date.getTime()) : '—';
+  const width = 320;
+  const height = 220;
+  const barX = 16;
+  const barY = 138;
+  const barW = width - 32;
+  const barH = 28;
+  const nowMinutes = date.getUTCHours() * 60 + date.getUTCMinutes();
+  const weekday = isWeekday(date.getUTCDay());
+  const soon = getPeakSoonMinutes();
+  const buffer = getPeakTransitionBufferMinutes();
+  const postPeak = getPostPeakMinutes();
+  const markerX = barX + (nowMinutes / 1440) * barW;
+  const intervals: Array<[number, number, string]> = weekday ? [[0, Math.max(0, 60 - buffer - soon), '#3dd68c'], [Math.max(0, 60 - buffer - soon), 60 - buffer, '#f5a524'], [60 - buffer, 240, '#e5484d'], [240, 240 + postPeak, '#f5a524'], [240 + postPeak, Math.max(360 - buffer - soon, 240 + postPeak), '#3dd68c'], [Math.max(360 - buffer - soon, 240 + postPeak), 360 - buffer, '#f5a524'], [360 - buffer, 600, '#e5484d'], [600, 600 + postPeak, '#f5a524'], [600 + postPeak, 1440, '#3dd68c']] : [[0, 1440, '#3dd68c']];
+  const zones = intervals.filter(([from, to]) => to > from).map(([from, to, color]) => `<rect x="${barX + (from / 1440) * barW}" y="${barY}" width="${((to - from) / 1440) * barW}" height="${barH}" fill="${color}"/>`).join('');
+  const statusColor = state === 'peak' ? '#e5484d' : state === 'offPeak' ? '#3dd68c' : '#f5a524';
+  const time = `${date.toISOString().replace('T', ' ').slice(0, 19)} UTC`;
+  const transitionTime = next ? `${new Date(next.time).toISOString().slice(11, 16)} UTC` : '—';
+
+  const timeScale = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'].map((label, index) => `<text x="${barX + (index / 6) * barW}" y="${barY + barH + 16}" fill="#888" font-family="Segoe UI,sans-serif" font-size="8" text-anchor="${index === 0 ? 'start' : index === 6 ? 'end' : 'middle'}">${label}</text>`).join('');
+  const description = t('peakHours.tooltip.description');
+  const descriptionParts = description.split('|');
+  const svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><rect width="${width}" height="${height}" fill="#202020"/><g color="#eee" transform="translate(16 14) scale(.40)">${DEEPSEEK_LOGO}</g><text x="43" y="28" fill="#eee" font-family="Segoe UI,sans-serif" font-size="13" font-weight="600">DeepSeek</text><circle cx="${width - 78}" cy="25" r="4" fill="${statusColor}"/><text x="${width - 16}" y="29" fill="${statusColor}" font-family="Segoe UI,sans-serif" font-size="11" font-weight="600" text-anchor="end">${escapeXml(status.toUpperCase())}</text><text x="${width / 2}" y="53" fill="#aaa" font-family="Segoe UI,sans-serif" font-size="10" text-anchor="middle">${escapeXml(time)}</text><text x="${width / 2}" y="83" fill="#eee" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700" text-anchor="middle">${escapeXml(countdown)}</text><text x="${width / 2}" y="99" fill="#aaa" font-family="Segoe UI,sans-serif" font-size="10" text-anchor="middle">${escapeXml(t('peakHours.tooltip.transitionAt', { transition, time: transitionTime }))}</text><rect x="${barX}" y="${barY}" width="${barW}" height="${barH}" fill="#333"/>${zones}<line x1="${markerX}" y1="${barY - 8}" x2="${markerX}" y2="${barY + barH + 8}" stroke="#fff" stroke-width="2"/><text x="${markerX}" y="${barY - 12}" fill="#fff" font-family="Segoe UI,sans-serif" font-size="9" text-anchor="middle">${escapeXml(t('peakHours.tooltip.youAreHere'))}</text>${timeScale}<text x="16" y="${barY + barH + 32}" fill="#bbb" font-family="Segoe UI,sans-serif" font-size="10">🟩 ${escapeXml(t('peakHours.tooltip.offPeak'))}   🟧 ${escapeXml(t('peakHours.tooltip.buffer'))}   🟥 ${escapeXml(t('peakHours.tooltip.peak'))}</text><text x="16" y="${barY + barH + 48}" fill="#777" font-family="Segoe UI,sans-serif" font-size="9">${escapeXml(descriptionParts[0])}</text><text x="16" y="${barY + barH + 61}" fill="#777" font-family="Segoe UI,sans-serif" font-size="9">${escapeXml(descriptionParts[1] || '')}</text></svg>`;
   const tooltip = new vscode.MarkdownString();
   tooltip.isTrusted = false;
-  tooltip.appendMarkdown(`$(deepseek-logo) **${status.toUpperCase()}**  \n`);
-  tooltip.appendMarkdown(`● ${t('peakHours.tooltip.currentTime', { time: `${date.toISOString().replace('T', ' ').slice(0, 19)} UTC` })}  \n\n`);
-  tooltip.appendMarkdown(`### ${countdown} ${t('peakHours.tooltip.until', { transition })}  \n`);
-  tooltip.appendMarkdown(`${t('peakHours.tooltip.transitionAt', { transition, time: next ? new Date(next.time).toISOString().slice(11, 16) : '—' })}  \n\n`);
-  tooltip.appendMarkdown(`${getDayTimeline(date)}  \n`);
-  tooltip.appendMarkdown(`00:00               12:00               24:00  \n`);
-  tooltip.appendMarkdown(`🔻 ${t('peakHours.tooltip.youAreHere')}  \n`);
-  tooltip.appendMarkdown(`🟩 ${t('peakHours.tooltip.offPeak')}   🟧 ${t('peakHours.tooltip.buffer')}   🟥 ${t('peakHours.tooltip.peak')}  \n\n`);
-  tooltip.appendMarkdown(`**${t('peakHours.tooltip.schedule')}**  \n${t('peakHours.tooltip.description')}`);
+  tooltip.supportHtml = true;
+  tooltip.appendMarkdown(`![DeepSeek peak hours](data:image/svg+xml;base64,${Buffer.from(svg, 'utf8').toString('base64')}|width=${width})`);
   return tooltip;
 }
 
