@@ -15,6 +15,11 @@ const MINUTE_MS = 60_000;
 const BOUNDARY_REFRESH_MINUTES = 5;
 const NORMAL_INTERVAL_MS = 2 * MINUTE_MS;
 const BOUNDARY_INTERVAL_MS = 30_000;
+const HOUR = 60;
+const PEAK_WINDOWS = [
+  { start: 1 * HOUR, end: 4 * HOUR },
+  { start: 6 * HOUR, end: 10 * HOUR },
+] as const;
 
 
 const DARK_COLORS = {
@@ -84,14 +89,11 @@ function transitionsAround(now: Date): Transition[] {
     day.setUTCDate(start.getUTCDate() + offset);
     if (!isWeekday(day.getUTCDay())) continue;
 
-    for (const [hour, entersPeak] of [
-      [1, true],
-      [4, false],
-      [6, true],
-      [10, false],
-    ] as const) {
-      day.setUTCHours(hour, 0, 0, 0);
-      result.push({ time: day.getTime(), entersPeak });
+    for (const window of PEAK_WINDOWS) {
+      day.setUTCHours(Math.floor(window.start / 60), window.start % 60, 0, 0);
+      result.push({ time: day.getTime(), entersPeak: true });
+      day.setUTCHours(Math.floor(window.end / 60), window.end % 60, 0, 0);
+      result.push({ time: day.getTime(), entersPeak: false });
     }
   }
   return result.sort((a, b) => a.time - b.time);
@@ -101,20 +103,14 @@ export function isPeakHours(date: Date): boolean {
   if (!isWeekday(date.getUTCDay())) return false;
   const minutes = date.getUTCHours() * 60 + date.getUTCMinutes();
   const buffer = getPeakTransitionBufferMinutes();
-  return (
-    (minutes >= 60 - buffer && minutes < 240) ||
-    (minutes >= 360 - buffer && minutes < 600)
-  );
+  return PEAK_WINDOWS.some(({ start, end }) => minutes >= start - buffer && minutes < end);
 }
 
 function isPostPeakPeriod(date: Date): boolean {
   if (!isWeekday(date.getUTCDay())) return false;
   const minutes = date.getUTCHours() * 60 + date.getUTCMinutes();
   const postPeak = getPostPeakMinutes();
-  return (
-    (minutes >= 240 && minutes < 240 + postPeak) ||
-    (minutes >= 600 && minutes < 600 + postPeak)
-  );
+  return PEAK_WINDOWS.some(({ end }) => minutes >= end && minutes < end + postPeak);
 }
 
 function formatCountdown(ms: number): string {
@@ -158,7 +154,21 @@ function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString 
   const buffer = getPeakTransitionBufferMinutes();
   const postPeak = getPostPeakMinutes();
   const markerX = barX + (nowMinutes / 1440) * barW;
-  const intervals: Array<[number, number, string]> = weekday ? [[0, Math.max(0, 60 - buffer - soon), colors.offPeak], [Math.max(0, 60 - buffer - soon), 60 - buffer, colors.peak], [60 - buffer, 240, colors.peak], [240, 240 + postPeak, colors.peak], [240 + postPeak, Math.max(360 - buffer - soon, 240 + postPeak), colors.offPeak], [Math.max(360 - buffer - soon, 240 + postPeak), 360 - buffer, colors.peak], [360 - buffer, 600, colors.peak], [600, 600 + postPeak, colors.peak], [600 + postPeak, 1440, colors.offPeak]] : [[0, 1440, colors.offPeak]];
+  const intervals: Array<[number, number, string]> = [];
+  if (weekday) {
+    let cursor = 0;
+    for (const window of PEAK_WINDOWS) {
+      const soonStart = Math.max(cursor, window.start - buffer - soon);
+      if (cursor < soonStart) intervals.push([cursor, soonStart, colors.offPeak]);
+      if (soonStart < window.start - buffer) intervals.push([soonStart, window.start - buffer, colors.peak]);
+      if (window.start - buffer < window.end) intervals.push([window.start - buffer, window.end, colors.peak]);
+      if (window.end < window.end + postPeak) intervals.push([window.end, window.end + postPeak, colors.peak]);
+      cursor = window.end + postPeak;
+    }
+    if (cursor < 1440) intervals.push([cursor, 1440, colors.offPeak]);
+  } else {
+    intervals.push([0, 1440, colors.offPeak]);
+  }
   const zones = intervals.filter(([from, to]) => to > from).map(([from, to, color]) => `<rect x="${barX + (from / 1440) * barW}" y="${barY}" width="${((to - from) / 1440) * barW}" height="${barH}" fill="${color}"/>`).join('');
   const statusColor = state === 'peak' ? colors.peak : state === 'offPeak' ? colors.offPeak : colors.buffer;
   const statusIcon = state === 'peak' ? '🔥' : state === 'offPeak' ? '✅' : '🟡';
