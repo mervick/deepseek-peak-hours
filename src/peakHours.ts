@@ -17,19 +17,15 @@ const BOUNDARY_INTERVAL_MS = 30_000;
 
 
 const DARK_COLORS = {
-  // background: '#202020',
   track: '#333',
-
   // peak: '#e5484d',
   peak: '#f44336',
   // peak: '#e51400',
   // buffer: '#f5a524',
   // buffer: '#ff9800',
   buffer: '#ffb900',
-  // buffer: '#f44336',
   // offPeak: '#3dd68c',
   offPeak: '#4caf50',
-
   text: '#eee',
   textMuted: '#aaa',
   textDim: '#777',
@@ -38,7 +34,6 @@ const DARK_COLORS = {
   legend: '#bbb',
 };
 const LIGHT_COLORS = {
-  // background: '#ffffff',
   track: '#d0d0d0',
   // peak: '#c62828',
   // peak: '#D13438',
@@ -165,7 +160,7 @@ function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString 
   const intervals: Array<[number, number, string]> = weekday ? [[0, Math.max(0, 60 - buffer - soon), colors.offPeak], [Math.max(0, 60 - buffer - soon), 60 - buffer, colors.peak], [60 - buffer, 240, colors.peak], [240, 240 + postPeak, colors.peak], [240 + postPeak, Math.max(360 - buffer - soon, 240 + postPeak), colors.offPeak], [Math.max(360 - buffer - soon, 240 + postPeak), 360 - buffer, colors.peak], [360 - buffer, 600, colors.peak], [600, 600 + postPeak, colors.peak], [600 + postPeak, 1440, colors.offPeak]] : [[0, 1440, colors.offPeak]];
   const zones = intervals.filter(([from, to]) => to > from).map(([from, to, color]) => `<rect x="${barX + (from / 1440) * barW}" y="${barY}" width="${((to - from) / 1440) * barW}" height="${barH}" fill="${color}"/>`).join('');
   const statusColor = state === 'peak' ? colors.peak : state === 'offPeak' ? colors.offPeak : colors.buffer;
-  const statusIcon = state === 'peak' ? '🔥' : state === 'offPeak' ? '✓' : '⚠';
+  const statusIcon = state === 'peak' ? '🔥' : state === 'offPeak' ? '✅' : '🟡';
   const time = `${date.toISOString().replace('T', ' ').slice(0, 19)} UTC`;
   const transitionTime = next ? new Date(next.time).toISOString().slice(11, 16) : '—';
 
@@ -186,7 +181,7 @@ function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString 
       <line x1="${markerX}" y1="${barY - 8}" x2="${markerX}" y2="${barY + barH + 8}" stroke="${colors.marker}" stroke-width="2"/>
       <text x="${markerX}" y="${barY - 12}" fill="${colors.marker}" font-family="Segoe UI,sans-serif" font-size="9" text-anchor="middle">${escapeXml(t('peakHours.tooltip.youAreHere'))}</text>
       ${timeScale}
-      <text x="16" y="${barY + barH + 40 + 4}" fill="${colors.legend}" font-family="Segoe UI,sans-serif" font-size="10">🟩 ${escapeXml(t('peakHours.tooltip.offPeak'))}    🟥 ${escapeXml(t('peakHours.tooltip.peak'))}</text>
+      <text x="16" y="${barY + barH + 40 + 4}" fill="${colors.legend}" font-family="Segoe UI,sans-serif" font-size="10" xml:space="preserve">🟩 ${escapeXml(t('peakHours.tooltip.offPeak'))}   🟥 ${escapeXml(t('peakHours.tooltip.peak'))}</text>
       <text x="16" y="${barY + barH + 58 + 12}" fill="${colors.textDim}" font-family="Segoe UI,sans-serif" font-size="9">${escapeXml(descriptionParts[0])}</text>
       <text x="16" y="${barY + barH + 72 + 12}" fill="${colors.textDim}" font-family="Segoe UI,sans-serif" font-size="9">${escapeXml(descriptionParts[1] || '')}</text>
     </svg>
