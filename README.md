@@ -1,11 +1,14 @@
 # DeepSeek Peak Hours
 
 [![VS Code Marketplace](https://img.shields.io/vscode-marketplace/v/mervick.deepseek-peak-hours.svg?label=VS%20Code%20Marketplace&logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=mervick.deepseek-peak-hours)
+[![VS Code version](https://img.shields.io/badge/VS%20Code-^1.85.0-blue?logo=visualstudiocode)](https://code.visualstudio.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![No API Key Required](https://img.shields.io/badge/No%20API%20Key-Required%3F%20No!-brightgreen)](https://github.com/mervick/deepseek-peak-hours)
+[![Offline First](https://img.shields.io/badge/Offline-100%25-blue)](https://github.com/mervick/deepseek-peak-hours)
 
-**Visual Studio Code extension** that displays DeepSeek API peak/off-peak status as a separate status bar item — helping you optimize API costs by choosing the right time to run your workloads.
+**Visual Studio Code extension** that displays DeepSeek API peak/off-peak status directly in your status bar — helping you optimize API costs by choosing the right time to run your workloads.
 
-> **💡 No API Key Required** – This extension works completely offline, using only UTC time. No registration, no tokens, no internet connection needed.
+> **💡 No API Key Required** – Works completely offline using only UTC time. No registration, no internet needed.
 
 <p align="center">
   <img src="assets/preview.png" alt="DeepSeek Peak Hours Preview" width="414" height="316" />
@@ -72,7 +75,7 @@ All other hours outside the defined peak windows are off-peak
 
 ## Requirements
 
-- Visual Studio Code 1.129 or later
+- Visual Studio Code 1.85.0 or later
 - No DeepSeek API key is required
 - Internet access is not required
 
