@@ -2,7 +2,7 @@
   "name": "deepseek-peak-hours",
   "displayName": "DeepSeek Peak Hours",
   "description": "Show DeepSeek peak and off-peak hours in the VS Code status bar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "mervick",
   "author": {
     "name": "Andrey Izman",
