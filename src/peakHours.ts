@@ -16,11 +16,6 @@ const NORMAL_INTERVAL_MS = 2 * MINUTE_MS;
 const BOUNDARY_INTERVAL_MS = 30_000;
 
 
-        // ? '#e51400'
-        // : state === 'approaching' || state === 'postPeak'
-        //   ? '#ffb900'
-
-
 const DARK_COLORS = {
   // background: '#202020',
   track: '#333',
