@@ -177,7 +177,7 @@ function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString 
     <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
       <g color="${colors.text}" transform="translate(16 16) scale(.32)">${DEEPSEEK_LOGO}</g>
       <text x="36" y="28" fill="${colors.text}" font-family="Segoe UI,sans-serif" font-size="13" font-weight="500">Peak Hours</text>
-      <text x="${width - 16}" y="28" fill="${statusColor}" font-family="Segoe UI,sans-serif" font-size="11" font-weight="600" text-anchor="end">${statusIcon} ${escapeXml(status.toUpperCase())}</text>
+      <text x="${width - 16}" y="27" fill="${statusColor}" font-family="Segoe UI,sans-serif" font-size="11" font-weight="600" text-anchor="end">${statusIcon} ${escapeXml(status.toUpperCase())}</text>
       <text x="${width / 2}" y="53" fill="${colors.textMuted}" font-family="Segoe UI,sans-serif" font-size="10" text-anchor="middle">${escapeXml(time)}</text>
       <text x="${width / 2}" y="83" fill="${colors.text}" font-family="Segoe UI,sans-serif" font-size="22" font-weight="700" text-anchor="middle">${escapeXml(countdown)}</text>
       <text x="${width / 2}" y="104" fill="${colors.textMuted}" font-family="Segoe UI,sans-serif" font-size="12" text-anchor="middle">${escapeXml(t('peakHours.tooltip.transitionAt', { transition, time: transitionTime }))}</text>
