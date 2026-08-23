@@ -5,6 +5,8 @@
 
 **Visual Studio Code extension** that displays DeepSeek API peak/off-peak status as a separate status bar item — helping you optimize API costs by choosing the right time to run your workloads.
 
+> **💡 No API Key Required** – This extension works completely offline, using only UTC time. No registration, no tokens, no internet connection needed.
+
 <p align="center">
   <img src="assets/preview.png" alt="DeepSeek Peak Hours Preview" width="414" height="316" />
   <br />
