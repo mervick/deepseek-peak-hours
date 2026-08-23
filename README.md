@@ -1,6 +1,6 @@
 # DeepSeek Peak Hours
 
-[![VS Code Marketplace](https://img.shields.io/vscode-marketplace/v/mervick.deepseek-peak-hours.svg?label=VS%20Code%20Marketplace&logo=visualstudiocode)](https://marketplace.visualstudio.com/items?itemName=mervick.deepseek-peak-hours)
+[![VS Code Marketplace](https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=mervick.deepseek-peak-hours)
 [![VS Code version](https://img.shields.io/badge/VS%20Code-^1.85.0-blue?logo=visualstudiocode)](https://code.visualstudio.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![No API Key Required](https://img.shields.io/badge/No%20API%20Key-Required%3F%20No!-brightgreen)](https://github.com/mervick/deepseek-peak-hours)
