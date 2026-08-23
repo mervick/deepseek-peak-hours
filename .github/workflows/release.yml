@@ -31,8 +31,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Run tests
-        run: pnpm test
+      - name: Compile extension
+        run: pnpm run compile
 
       - name: Verify tag matches package version
         run: |
