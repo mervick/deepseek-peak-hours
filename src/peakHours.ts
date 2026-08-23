@@ -69,6 +69,67 @@ function isPostPeakPeriod(date: Date): boolean {
   );
 }
 
+function formatCountdown(ms: number): string {
+  const totalMinutes = Math.max(0, Math.ceil(ms / MINUTE_MS));
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  return hours ? `${hours}h ${minutes}m` : `${minutes}m`;
+}
+
+function getDayTimeline(date: Date): string {
+  const width = 48;
+  const nowMinutes = date.getUTCHours() * 60 + date.getUTCMinutes();
+  const weekday = isWeekday(date.getUTCDay());
+  const soon = getPeakSoonMinutes();
+  const buffer = getPeakTransitionBufferMinutes();
+  const postPeak = getPostPeakMinutes();
+  const cells: string[] = [];
+
+  for (let cell = 0; cell < width; cell += 1) {
+    const minute = Math.floor((cell * 24 * 60) / width);
+    const peak = weekday && ((minute >= 60 - buffer && minute < 240) || (minute >= 360 - buffer && minute < 600));
+    const post = weekday && ((minute >= 240 && minute < 240 + postPeak) || (minute >= 600 && minute < 600 + postPeak));
+    const approaching = weekday && (
+      (minute >= Math.max(0, 60 - buffer - soon) && minute < 60 - buffer) ||
+      (minute >= 360 - buffer - soon && minute < 360 - buffer)
+    );
+    const marker = Math.min(width - 1, Math.floor((nowMinutes * width) / (24 * 60)));
+    cells.push(cell === marker ? '🔻' : peak ? '🟥' : post || approaching ? '🟧' : '🟩');
+  }
+  return cells.join('');
+}
+
+function buildTooltip(date: Date, state: PeakHoursState): vscode.MarkdownString {
+  const transitions = transitionsAround(date);
+  const next = transitions.find((transition) => transition.time > date.getTime());
+  const status =
+    state === 'peak'
+      ? t('peakHours.peak')
+      : state === 'approaching'
+        ? t('peakHours.approaching')
+        : state === 'postPeak'
+          ? t('peakHours.postPeak')
+          : t('peakHours.offPeak');
+  const transition = next
+    ? next.entersPeak
+      ? t('peakHours.peak')
+      : t('peakHours.offPeak')
+    : t('peakHours.offPeak');
+  const countdown = next ? formatCountdown(next.time - date.getTime()) : '—';
+  const tooltip = new vscode.MarkdownString();
+  tooltip.isTrusted = false;
+  tooltip.appendMarkdown(`$(deepseek-logo) **${status.toUpperCase()}**  \n`);
+  tooltip.appendMarkdown(`● ${t('peakHours.tooltip.currentTime', { time: `${date.toISOString().replace('T', ' ').slice(0, 19)} UTC` })}  \n\n`);
+  tooltip.appendMarkdown(`### ${countdown} ${t('peakHours.tooltip.until', { transition })}  \n`);
+  tooltip.appendMarkdown(`${t('peakHours.tooltip.transitionAt', { transition, time: next ? new Date(next.time).toISOString().slice(11, 16) : '—' })}  \n\n`);
+  tooltip.appendMarkdown(`${getDayTimeline(date)}  \n`);
+  tooltip.appendMarkdown(`00:00               12:00               24:00  \n`);
+  tooltip.appendMarkdown(`🔻 ${t('peakHours.tooltip.youAreHere')}  \n`);
+  tooltip.appendMarkdown(`🟩 ${t('peakHours.tooltip.offPeak')}   🟧 ${t('peakHours.tooltip.buffer')}   🟥 ${t('peakHours.tooltip.peak')}  \n\n`);
+  tooltip.appendMarkdown(`**${t('peakHours.tooltip.schedule')}**  \n${t('peakHours.tooltip.description')}`);
+  return tooltip;
+}
+
 function isNearBoundary(now: number, transitions: Transition[]): boolean {
   const refreshMs = BOUNDARY_REFRESH_MINUTES * MINUTE_MS;
   const soonMs = getPeakSoonMinutes() * MINUTE_MS;
@@ -143,7 +204,7 @@ export class PeakHoursStatusBar implements vscode.Disposable {
             ? t('peakHours.postPeak')
             : t('peakHours.offPeak');
     this.item.text = `$(deepseek-logo) ${text}`;
-    this.item.tooltip = t('peakHours.tooltip');
+    this.item.tooltip = buildTooltip(date, state);
     this.item.color =
       state === 'peak'
         ? '#e51400'
