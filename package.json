@@ -92,7 +92,8 @@
   "scripts": {
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "publish": "npm run compile && vsce publish",
+    "build": "npm run compile && npx --yes @vscode/vsce package --no-dependencies",
+    "publish": "npm run compile && npx --yes @vscode/vsce publish",
     "vscode:prepublish": "npm run compile"
   },
   "devDependencies": {
