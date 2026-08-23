@@ -49,8 +49,9 @@ All other hours outside the defined peak windows are off-peak
   - 🟨 **Buffer / soon** — Transition period (Peak soon or Off‑peak soon)
   - **Off‑peak** — lower cost, better performance
 - **Hover preview** — hover over the status bar item to see a detailed dashboard with a countdown timer, timeline, and impact forecast.
-- **Smart refresh** — updates every 5 minutes normally, and every **30 seconds** near scheduled transitions
-- **Debug mode** — enable `deepseek-peak-hours.debug` for detailed logs; `deepseek-peak-hours.debugUtcTime` accepts an ISO UTC start time to simulate elapsed time
+- **Smart refresh** - updates every 5 minutes normally, and every **30 seconds** near scheduled transitions
+- **Transition notifications** - optionally show a notification when the peak-hours status changes
+- **Debug mode** - enable `deepseek-peak-hours.debug` for detailed logs; `deepseek-peak-hours.debugUtcTime` accepts an ISO UTC start time to simulate elapsed time
 
 ---
 
@@ -58,6 +59,7 @@ All other hours outside the defined peak windows are off-peak
 
 | Setting | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
+| `deepseek-peak-hours.notifications` | boolean | `true` | Show notifications when the peak-hours status changes |
 | `deepseek-peak-hours.peakSoonMinutes` | number | `5` | Minutes before peak starts to show "Peak soon" status |
 | `deepseek-peak-hours.peakTransitionBufferMinutes` | number | `1` | Buffer zone length at peak boundaries |
 | `deepseek-peak-hours.postPeakMinutes` | number | `5` | Minutes after peak ends to show "Off‑peak soon" |
