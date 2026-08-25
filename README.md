@@ -67,10 +67,10 @@ This extension **does not require a DeepSeek API key** and **never makes network
 
 | Setting | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `api-peak-hours.notifications` | boolean | `true` | Show notifications when the peak-hours status changes |
-| `api-peak-hours.peakSoonMinutes` | number | `5` | Minutes before peak starts to show "Peak soon" status |
-| `api-peak-hours.peakTransitionBufferMinutes` | number | `1` | Buffer zone length at peak boundaries |
-| `api-peak-hours.postPeakMinutes` | number | `5` | Minutes after peak ends to show "Off‑peak soon" |
+| `api-peak-hours-tracker.notifications` | boolean | `true` | Show notifications when the peak-hours status changes |
+| `api-peak-hours-tracker.peakSoonMinutes` | number | `5` | Minutes before peak starts to show "Peak soon" status |
+| `api-peak-hours-tracker.peakTransitionBufferMinutes` | number | `1` | Buffer zone length at peak boundaries |
+| `api-peak-hours-tracker.postPeakMinutes` | number | `5` | Minutes after peak ends to show "Off‑peak soon" |
 
 
 ## Privacy & Security
@@ -95,4 +95,3 @@ All product names, logos, and brands are property of their respective owners. Us
 This tool is provided "as is" for informational purposes only. Always refer to the official DeepSeek documentation for the most accurate and up‑to‑date pricing and peak‑hour schedules.
 
 For official information, please refer to the [DeepSeek API Documentation](https://api-docs.deepseek.com/).
-

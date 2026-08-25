@@ -11,7 +11,7 @@ const cache = new Map<Locale, Record<string, string>>();
 /** Read the language setting; auto is the default. */
 export function getLanguageSetting(): LanguageSetting {
   const v = vscode.workspace
-    .getConfiguration('api-peak-hours')
+    .getConfiguration('api-peak-hours-tracker')
     .get<string>('language', 'auto');
   return v === 'en' || v === 'zh-cn' ? v : 'auto';
 }
@@ -36,7 +36,7 @@ function loadMessages(locale: Locale): Record<string, string> {
     const file = path.join(LOCALES_DIR, `${locale}.json`);
     messages = JSON.parse(fs.readFileSync(file, 'utf8')) as Record<string, string>;
   } catch (e) {
-    console.error('[api-peak-hours] Failed to load locale', locale, e);
+    console.error('[api-peak-hours-tracker] Failed to load locale', locale, e);
   }
   cache.set(locale, messages);
   return messages;

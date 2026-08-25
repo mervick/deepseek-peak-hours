@@ -38,53 +38,53 @@
     "configuration": {
       "title": "API Peak Hours Tracker",
       "properties": {
-        "api-peak-hours.notifications": {
+        "api-peak-hours-tracker.notifications": {
           "order": 1,
           "type": "boolean",
           "default": true,
-          "title": "%api-peak-hours.config.notifications.title%",
-          "description": "%api-peak-hours.config.notifications.description%"
+          "title": "%api-peak-hours-tracker.config.notifications.title%",
+          "description": "%api-peak-hours-tracker.config.notifications.description%"
         },
-        "api-peak-hours.peakSoonMinutes": {
+        "api-peak-hours-tracker.peakSoonMinutes": {
           "order": 2,
           "type": "number",
           "default": 5,
           "minimum": 0,
           "maximum": 30,
-          "title": "%api-peak-hours.config.peakSoonMinutes.title%",
-          "description": "%api-peak-hours.config.peakSoonMinutes.description%"
+          "title": "%api-peak-hours-tracker.config.peakSoonMinutes.title%",
+          "description": "%api-peak-hours-tracker.config.peakSoonMinutes.description%"
         },
-        "api-peak-hours.peakTransitionBufferMinutes": {
+        "api-peak-hours-tracker.peakTransitionBufferMinutes": {
           "order": 3,
           "type": "number",
           "default": 1,
           "minimum": 0,
           "maximum": 20,
-          "title": "%api-peak-hours.config.peakTransitionBufferMinutes.title%",
-          "description": "%api-peak-hours.config.peakTransitionBufferMinutes.description%"
+          "title": "%api-peak-hours-tracker.config.peakTransitionBufferMinutes.title%",
+          "description": "%api-peak-hours-tracker.config.peakTransitionBufferMinutes.description%"
         },
-        "api-peak-hours.postPeakMinutes": {
+        "api-peak-hours-tracker.postPeakMinutes": {
           "order": 4,
           "type": "number",
           "default": 5,
           "minimum": 0,
           "maximum": 20,
-          "title": "%api-peak-hours.config.postPeakMinutes.title%",
-          "description": "%api-peak-hours.config.postPeakMinutes.description%"
+          "title": "%api-peak-hours-tracker.config.postPeakMinutes.title%",
+          "description": "%api-peak-hours-tracker.config.postPeakMinutes.description%"
         },
-        "api-peak-hours.debug": {
+        "api-peak-hours-tracker.debug": {
           "order": 100,
           "type": "boolean",
           "default": false,
-          "title": "%api-peak-hours.config.peakHoursDebug.title%",
-          "description": "%api-peak-hours.config.peakHoursDebug.description%"
+          "title": "%api-peak-hours-tracker.config.peakHoursDebug.title%",
+          "description": "%api-peak-hours-tracker.config.peakHoursDebug.description%"
         },
-        "api-peak-hours.debugUtcTime": {
+        "api-peak-hours-tracker.debugUtcTime": {
           "order": 101,
           "type": "string",
           "default": "",
-          "title": "%api-peak-hours.config.peakHoursDebugUtcTime.title%",
-          "description": "%api-peak-hours.config.peakHoursDebugUtcTime.description%"
+          "title": "%api-peak-hours-tracker.config.peakHoursDebugUtcTime.title%",
+          "description": "%api-peak-hours-tracker.config.peakHoursDebugUtcTime.description%"
         }
       }
     }
