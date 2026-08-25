@@ -1,14 +1,14 @@
 {
-  "deepseek-peak-hours.config.peakHoursDebug.title": "Enable peak-hours debug logging",
-  "deepseek-peak-hours.config.peakHoursDebug.description": "Write simulated time, interval changes, state transitions, and notifications to the Extension Host log.",
-  "deepseek-peak-hours.config.peakHoursDebugUtcTime.title": "Debug UTC time for peak hours",
-  "deepseek-peak-hours.config.peakHoursDebugUtcTime.description": "For debugging only. Sets the simulated UTC start time; elapsed real time advances from it.",
-  "deepseek-peak-hours.config.peakSoonMinutes.title": "Peak soon warning window",
-  "deepseek-peak-hours.config.peakSoonMinutes.description": "Minutes before peak starts to show Peak soon (0-30).",
-  "deepseek-peak-hours.config.peakTransitionBufferMinutes.title": "Peak transition buffer",
-  "deepseek-peak-hours.config.peakTransitionBufferMinutes.description": "Minutes to turn Peak on before its start (0-20).",
-  "deepseek-peak-hours.config.postPeakMinutes.title": "Post-peak yellow period",
-  "deepseek-peak-hours.config.postPeakMinutes.description": "Minutes after peak ends to keep the status in the yellow transition state (0-20).",
-  "deepseek-peak-hours.config.notifications.title": "Show transition notifications",
-  "deepseek-peak-hours.config.notifications.description": "Show notifications when the peak-hours status changes."
+  "api-peak-hours.config.peakHoursDebug.title": "Enable peak-hours debug logging",
+  "api-peak-hours.config.peakHoursDebug.description": "Write simulated time, interval changes, state transitions, and notifications to the Extension Host log.",
+  "api-peak-hours.config.peakHoursDebugUtcTime.title": "Debug UTC time for peak hours",
+  "api-peak-hours.config.peakHoursDebugUtcTime.description": "For debugging only. Sets the simulated UTC start time; elapsed real time advances from it.",
+  "api-peak-hours.config.peakSoonMinutes.title": "Peak soon warning window",
+  "api-peak-hours.config.peakSoonMinutes.description": "Minutes before peak starts to show Peak soon (0-30).",
+  "api-peak-hours.config.peakTransitionBufferMinutes.title": "Peak transition buffer",
+  "api-peak-hours.config.peakTransitionBufferMinutes.description": "Minutes to turn Peak on before its start (0-20).",
+  "api-peak-hours.config.postPeakMinutes.title": "Post-peak yellow period",
+  "api-peak-hours.config.postPeakMinutes.description": "Minutes after peak ends to keep the status in the yellow transition state (0-20).",
+  "api-peak-hours.config.notifications.title": "Show transition notifications",
+  "api-peak-hours.config.notifications.description": "Show notifications when the peak-hours status changes."
 }

@@ -1,17 +1,17 @@
-# DeepSeek Peak Hours
+# API Peak Hours Tracker
 
-[![VS Code Marketplace](https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=mervick.deepseek-peak-hours)
+[![VS Code Marketplace](https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=mervick.api-peak-hours-tracker)
 [![VS Code version](https://img.shields.io/badge/VS%20Code-^1.85.0-blue?logo=visualstudiocode)](https://code.visualstudio.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![No API Key Required](https://img.shields.io/badge/No%20API%20Key-Required?%20No!-brightgreen)](https://github.com/mervick/deepseek-peak-hours)
 [![Offline First](https://img.shields.io/badge/Offline-100%25-blue)](https://github.com/mervick/deepseek-peak-hours)
 
-**Visual Studio Code extension** that displays DeepSeek API peak/off-peak status directly in your status bar — helping you optimize API costs by choosing the right time to run your workloads.
+**Visual Studio Code extension** for tracking DeepSeek API peak hours, displaying peak/off-peak status directly in your status bar and helping you optimize API costs by choosing the right time to run your workloads.
 
 > **💡 No API Key Required** – Works completely offline using only UTC time. No registration, no internet needed.
 
 <p align="center">
-  <img src="assets/preview.png" alt="DeepSeek Peak Hours Preview" width="414" height="316" />
+  <img src="assets/preview.png" alt="API Peak Hours Tracker Preview" width="414" height="316" />
   <br />
   <sub>Real-time status hover preview in Dark Theme</sub>
 </p>
@@ -56,7 +56,7 @@ All other hours outside the defined peak windows are off-peak
 - **Hover preview** — hover over the status bar item to see a detailed dashboard with a countdown timer, timeline, and impact forecast.
 - **Smart refresh** - updates every 5 minutes normally, and every **30 seconds** near scheduled transitions
 - **Transition notifications** - optionally show a notification when the peak-hours status changes
-- **Debug mode** - enable `deepseek-peak-hours.debug` for detailed logs; `deepseek-peak-hours.debugUtcTime` accepts an ISO UTC start time to simulate elapsed time
+- **Debug mode** - enable `api-peak-hours.debug` for detailed logs; `api-peak-hours.debugUtcTime` accepts an ISO UTC start time to simulate elapsed time
 
 ---
 
@@ -64,12 +64,12 @@ All other hours outside the defined peak windows are off-peak
 
 | Setting | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `deepseek-peak-hours.notifications` | boolean | `true` | Show notifications when the peak-hours status changes |
-| `deepseek-peak-hours.peakSoonMinutes` | number | `5` | Minutes before peak starts to show "Peak soon" status |
-| `deepseek-peak-hours.peakTransitionBufferMinutes` | number | `1` | Buffer zone length at peak boundaries |
-| `deepseek-peak-hours.postPeakMinutes` | number | `5` | Minutes after peak ends to show "Off‑peak soon" |
-| `deepseek-peak-hours.debug` | boolean | `false` | Enable debug logging |
-| `deepseek-peak-hours.debugUtcTime` | string | `""` | ISO UTC start time for time simulation in debug mode |
+| `api-peak-hours.notifications` | boolean | `true` | Show notifications when the peak-hours status changes |
+| `api-peak-hours.peakSoonMinutes` | number | `5` | Minutes before peak starts to show "Peak soon" status |
+| `api-peak-hours.peakTransitionBufferMinutes` | number | `1` | Buffer zone length at peak boundaries |
+| `api-peak-hours.postPeakMinutes` | number | `5` | Minutes after peak ends to show "Off‑peak soon" |
+| `api-peak-hours.debug` | boolean | `false` | Enable debug logging |
+| `api-peak-hours.debugUtcTime` | string | `""` | ISO UTC start time for time simulation in debug mode |
 
 ---
 
@@ -81,4 +81,4 @@ All other hours outside the defined peak windows are off-peak
 
 ## Installation
 
-Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=mervick.deepseek-peak-hours) or search for `DeepSeek Peak Hours` in the Extensions view (`Ctrl+Shift+X`).
+Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=mervick.api-peak-hours-tracker) or search for `API Peak Hours Tracker` in the Extensions view (`Ctrl+Shift+X`).

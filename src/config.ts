@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 export function getConfig(): vscode.WorkspaceConfiguration {
-  return vscode.workspace.getConfiguration('deepseek-peak-hours');
+  return vscode.workspace.getConfiguration('api-peak-hours');
 }
 
 let debugClockRaw = '';
@@ -24,10 +24,10 @@ export function getPeakHoursNow(): Date {
     debugClockRaw = raw;
     debugClockStartMs = timestamp;
     debugClockRealStartMs = Date.now();
-    console.log('[deepseek-peak-hours] debug clock started:', raw);
+    console.log('[api-peak-hours] debug clock started:', raw);
   }
   const simulated = new Date(debugClockStartMs + Date.now() - debugClockRealStartMs);
-  console.log('[deepseek-peak-hours] time check:', 'real=', new Date().toISOString(), 'debugUtc=', simulated.toISOString());
+  console.log('[api-peak-hours] time check:', 'real=', new Date().toISOString(), 'debugUtc=', simulated.toISOString());
   return simulated;
 }
 

@@ -1,7 +1,7 @@
 {
-  "name": "deepseek-peak-hours",
-  "displayName": "DeepSeek Peak Hours",
-  "description": "Show DeepSeek peak and off-peak hours in the VS Code status bar",
+  "name": "api-peak-hours-tracker",
+  "displayName": "API Peak Hours Tracker",
+  "description": "Track DeepSeek API peak and off-peak hours in the VS Code status bar",
   "version": "0.1.2",
   "publisher": "mervick",
   "author": {
@@ -36,55 +36,55 @@
       }
     },
     "configuration": {
-      "title": "DeepSeek Peak Hours",
+      "title": "API Peak Hours Tracker",
       "properties": {
-        "deepseek-peak-hours.notifications": {
+        "api-peak-hours.notifications": {
           "order": 1,
           "type": "boolean",
           "default": true,
-          "title": "%deepseek-peak-hours.config.notifications.title%",
-          "description": "%deepseek-peak-hours.config.notifications.description%"
+          "title": "%api-peak-hours.config.notifications.title%",
+          "description": "%api-peak-hours.config.notifications.description%"
         },
-        "deepseek-peak-hours.peakSoonMinutes": {
+        "api-peak-hours.peakSoonMinutes": {
           "order": 2,
           "type": "number",
           "default": 5,
           "minimum": 0,
           "maximum": 30,
-          "title": "%deepseek-peak-hours.config.peakSoonMinutes.title%",
-          "description": "%deepseek-peak-hours.config.peakSoonMinutes.description%"
+          "title": "%api-peak-hours.config.peakSoonMinutes.title%",
+          "description": "%api-peak-hours.config.peakSoonMinutes.description%"
         },
-        "deepseek-peak-hours.peakTransitionBufferMinutes": {
+        "api-peak-hours.peakTransitionBufferMinutes": {
           "order": 3,
           "type": "number",
           "default": 1,
           "minimum": 0,
           "maximum": 20,
-          "title": "%deepseek-peak-hours.config.peakTransitionBufferMinutes.title%",
-          "description": "%deepseek-peak-hours.config.peakTransitionBufferMinutes.description%"
+          "title": "%api-peak-hours.config.peakTransitionBufferMinutes.title%",
+          "description": "%api-peak-hours.config.peakTransitionBufferMinutes.description%"
         },
-        "deepseek-peak-hours.postPeakMinutes": {
+        "api-peak-hours.postPeakMinutes": {
           "order": 4,
           "type": "number",
           "default": 5,
           "minimum": 0,
           "maximum": 20,
-          "title": "%deepseek-peak-hours.config.postPeakMinutes.title%",
-          "description": "%deepseek-peak-hours.config.postPeakMinutes.description%"
+          "title": "%api-peak-hours.config.postPeakMinutes.title%",
+          "description": "%api-peak-hours.config.postPeakMinutes.description%"
         },
-        "deepseek-peak-hours.debug": {
+        "api-peak-hours.debug": {
           "order": 100,
           "type": "boolean",
           "default": false,
-          "title": "%deepseek-peak-hours.config.peakHoursDebug.title%",
-          "description": "%deepseek-peak-hours.config.peakHoursDebug.description%"
+          "title": "%api-peak-hours.config.peakHoursDebug.title%",
+          "description": "%api-peak-hours.config.peakHoursDebug.description%"
         },
-        "deepseek-peak-hours.debugUtcTime": {
+        "api-peak-hours.debugUtcTime": {
           "order": 101,
           "type": "string",
           "default": "",
-          "title": "%deepseek-peak-hours.config.peakHoursDebugUtcTime.title%",
-          "description": "%deepseek-peak-hours.config.peakHoursDebugUtcTime.description%"
+          "title": "%api-peak-hours.config.peakHoursDebugUtcTime.title%",
+          "description": "%api-peak-hours.config.peakHoursDebugUtcTime.description%"
         }
       }
     }
