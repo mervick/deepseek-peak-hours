@@ -40,7 +40,7 @@ Being aware of when peak hours occur helps you:
 **Weekends** (Saturday & Sunday) are entirely off-peak.  
 All other hours outside are off-peak.  
 
-> **Source:** [DeepSeek API Models & Pricing — footnote (1)](https://api-docs.deepseek.com/quick_start/pricing/)
+> **Source:** [DeepSeek API Models & Pricing - footnote (1)](https://api-docs.deepseek.com/quick_start/pricing/)
 
 
 ## How It Works
@@ -50,14 +50,14 @@ This extension **does not require a DeepSeek API key** and **never makes network
 
 ## Features
 
-- **Real‑time status** — displays Peak / Peak soon / Off‑peak soon / Off‑peak in the VS Code status bar
+- **Real‑time status** - displays Peak / Peak soon / Off‑peak soon / Off‑peak in the VS Code status bar
 
 - **Color‑coded alerts**:
-  - 🔴 **Peak** — Peak hours (higher cost, higher latency)
-  - 🟡 **Buffer / soon** — Transition period (Peak soon or off‑peak soon)
-  - 🟢 **Off‑peak** — lower cost, better performance
+  - 🔴 **Peak** - Peak hours (higher cost, higher latency)
+  - 🟡 **Buffer / soon** - Transition period (Peak soon or off‑peak soon)
+  - 🟢 **Off‑peak** - lower cost, better performance
 
-- **Hover preview** — hover over the status bar item to see a detailed dashboard with a countdown timer, timeline, and impact forecast.
+- **Hover preview** - hover over the status bar item to see a detailed dashboard with a countdown timer, timeline, and impact forecast.
 - **Smart refresh** - updates every 5 minutes normally, and every **30 seconds** near scheduled transitions
 - **Transition notifications** - optionally show a notification when the peak-hours status changes
 
