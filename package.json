@@ -31,7 +31,7 @@
         "description": "Deep Peak Hours Tracker logo",
         "default": {
           "fontPath": "./media/icon.ttf",
-          "fontCharacter": "\\E002"
+          "fontCharacter": "\\E003"
         }
       }
     },
