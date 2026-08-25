@@ -4,6 +4,9 @@ export function getConfig(): vscode.WorkspaceConfiguration {
   return vscode.workspace.getConfiguration('api-peak-hours-tracker');
 }
 
+const DEBUG_ENABLED = false;
+const DEBUG_UTC_TIME = '';
+
 let debugClockRaw = '';
 let debugClockStartMs = 0;
 let debugClockRealStartMs = 0;
@@ -14,7 +17,7 @@ export function getPeakHoursNow(): Date {
     return new Date();
   }
 
-  const raw = (getConfig().get<string>('debugUtcTime', '') || '').trim();
+  const raw = DEBUG_UTC_TIME.trim();
   const timestamp = raw ? Date.parse(raw) : Number.NaN;
   if (!Number.isFinite(timestamp)) {
     debugClockRaw = '';
@@ -32,7 +35,7 @@ export function getPeakHoursNow(): Date {
 }
 
 export function isPeakHoursDebugEnabled(): boolean {
-  return getConfig().get<boolean>('debug', true);
+  return DEBUG_ENABLED;
 }
 
 export function getPeakSoonMinutes(): number {

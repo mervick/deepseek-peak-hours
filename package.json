@@ -71,20 +71,6 @@
           "maximum": 20,
           "title": "%api-peak-hours-tracker.config.postPeakMinutes.title%",
           "description": "%api-peak-hours-tracker.config.postPeakMinutes.description%"
-        },
-        "api-peak-hours-tracker.debug": {
-          "order": 100,
-          "type": "boolean",
-          "default": false,
-          "title": "%api-peak-hours-tracker.config.peakHoursDebug.title%",
-          "description": "%api-peak-hours-tracker.config.peakHoursDebug.description%"
-        },
-        "api-peak-hours-tracker.debugUtcTime": {
-          "order": 101,
-          "type": "string",
-          "default": "",
-          "title": "%api-peak-hours-tracker.config.peakHoursDebugUtcTime.title%",
-          "description": "%api-peak-hours-tracker.config.peakHoursDebugUtcTime.description%"
         }
       }
     }

@@ -1,8 +1,4 @@
 {
-  "api-peak-hours-tracker.config.peakHoursDebug.title": "启用高峰时段调试日志",
-  "api-peak-hours-tracker.config.peakHoursDebug.description": "将模拟时间、轮询间隔变化、状态切换和通知写入 Extension Host 日志。",
-  "api-peak-hours-tracker.config.peakHoursDebugUtcTime.title": "高峰时段调试 UTC 时间",
-  "api-peak-hours-tracker.config.peakHoursDebugUtcTime.description": "仅用于调试。设置模拟 UTC 起始时间，之后按真实经过时间继续计时。",
   "api-peak-hours-tracker.config.peakSoonMinutes.title": "Peak soon 提示窗口",
   "api-peak-hours-tracker.config.peakSoonMinutes.description": "Peak 开始前多少分钟显示 Peak soon（0-30）。",
   "api-peak-hours-tracker.config.peakTransitionBufferMinutes.title": "Peak 状态过渡缓冲时间",
