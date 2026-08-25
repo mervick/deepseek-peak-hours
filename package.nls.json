@@ -1,10 +1,10 @@
 {
-  "api-peak-hours-tracker.config.peakSoonMinutes.title": "Peak soon warning window",
-  "api-peak-hours-tracker.config.peakSoonMinutes.description": "Minutes before peak starts to show Peak soon (0-30).",
-  "api-peak-hours-tracker.config.peakTransitionBufferMinutes.title": "Peak transition buffer",
-  "api-peak-hours-tracker.config.peakTransitionBufferMinutes.description": "Minutes to turn Peak on before its start (0-20).",
-  "api-peak-hours-tracker.config.postPeakMinutes.title": "Post-peak yellow period",
-  "api-peak-hours-tracker.config.postPeakMinutes.description": "Minutes after peak ends to keep the status in the yellow transition state (0-20).",
-  "api-peak-hours-tracker.config.notifications.title": "Show transition notifications",
-  "api-peak-hours-tracker.config.notifications.description": "Show notifications when the peak-hours status changes."
+  "deep-peak-hours-tracker.config.peakSoonMinutes.title": "Peak soon warning window",
+  "deep-peak-hours-tracker.config.peakSoonMinutes.description": "Minutes before peak starts to show Peak soon (0-30).",
+  "deep-peak-hours-tracker.config.peakTransitionBufferMinutes.title": "Peak transition buffer",
+  "deep-peak-hours-tracker.config.peakTransitionBufferMinutes.description": "Minutes to turn Peak on before its start (0-20).",
+  "deep-peak-hours-tracker.config.postPeakMinutes.title": "Post-peak yellow period",
+  "deep-peak-hours-tracker.config.postPeakMinutes.description": "Minutes after peak ends to keep the status in the yellow transition state (0-20).",
+  "deep-peak-hours-tracker.config.notifications.title": "Show transition notifications",
+  "deep-peak-hours-tracker.config.notifications.description": "Show notifications when the peak-hours status changes."
 }

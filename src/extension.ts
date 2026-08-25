@@ -16,7 +16,7 @@ export function activate(context: vscode.ExtensionContext): void {
   const peakHoursStatusBar = new PeakHoursStatusBar();
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration((event) => {
-      if (!event.affectsConfiguration('api-peak-hours-tracker')) return;
+      if (!event.affectsConfiguration('deep-peak-hours-tracker')) return;
       peakHoursStatusBar.refresh();
       schedulePeakHours(peakHoursStatusBar);
     }),

@@ -236,7 +236,7 @@ export function getPeakHoursPollIntervalMs(date: Date): number {
   if (isPeakHoursDebugEnabled() && interval !== lastPollIntervalMs) {
     lastPollIntervalMs = interval;
     console.log(
-      '[api-peak-hours-tracker] polling interval changed:',
+      '[deep-peak-hours-tracker] polling interval changed:',
       interval === BOUNDARY_INTERVAL_MS ? '30 seconds' : '5 minutes',
       'at',
       date.toISOString()
@@ -253,14 +253,14 @@ export class PeakHoursStatusBar implements vscode.Disposable {
   constructor() {
     // Keep this item separate from other status-bar indicators.
     this.item = vscode.window.createStatusBarItem(
-      'api-peak-hours-tracker.d1-peak-hours',
+      'deep-peak-hours-tracker.d1-peak-hours',
       vscode.StatusBarAlignment.Right,
       100
     );
     this.item.command = {
       command: 'workbench.action.openSettings',
-      title: 'Open API Peak Hours Tracker settings',
-      arguments: ['@ext:mervick.api-peak-hours-tracker'],
+      title: 'Open Deep Peak Hours Tracker settings',
+      arguments: ['@ext:mervick.deep-peak-hours-tracker'],
     };
     this.item.tooltip = t('peakHours.tooltip');
     this.item.show();
@@ -303,21 +303,21 @@ export class PeakHoursStatusBar implements vscode.Disposable {
     if (!previous || previous === state) return;
 
     if (isPeakHoursDebugEnabled()) {
-      console.log('[api-peak-hours-tracker] state transition:', previous, '->', state);
+      console.log('[deep-peak-hours-tracker] state transition:', previous, '->', state);
     }
     if (!getConfig().get<boolean>('notifications', true)) return;
 
     if (state === 'peak') {
-      if (isPeakHoursDebugEnabled()) console.log('[api-peak-hours-tracker] notification: peak');
+      if (isPeakHoursDebugEnabled()) console.log('[deep-peak-hours-tracker] notification: peak');
       void vscode.window.showWarningMessage(t('peakHours.notification.peak'));
     } else if (state === 'approaching' && previous !== 'peak') {
       // Do not notify when the clock moves from Peak back to Peak soon.
-      if (isPeakHoursDebugEnabled()) console.log('[api-peak-hours-tracker] notification: approaching');
+      if (isPeakHoursDebugEnabled()) console.log('[deep-peak-hours-tracker] notification: approaching');
       void vscode.window.showWarningMessage(
         t('peakHours.notification.approaching', { minutes: getPeakSoonMinutes() })
       );
     } else if (state === 'offPeak' && previous !== 'offPeak') {
-      if (isPeakHoursDebugEnabled()) console.log('[api-peak-hours-tracker] notification: offPeak');
+      if (isPeakHoursDebugEnabled()) console.log('[deep-peak-hours-tracker] notification: offPeak');
       void vscode.window.showInformationMessage(t('peakHours.notification.offPeak'));
     }
   }

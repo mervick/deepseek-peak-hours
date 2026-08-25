@@ -1,6 +1,6 @@
 {
-  "name": "api-peak-hours-tracker",
-  "displayName": "API Peak Hours Tracker",
+  "name": "deep-peak-hours-tracker",
+  "displayName": "Deep Peak Hours Tracker",
   "description": "Track DeepSeek API peak and off-peak hours in the VS Code status bar",
   "version": "0.1.2",
   "publisher": "mervick",
@@ -36,41 +36,41 @@
       }
     },
     "configuration": {
-      "title": "API Peak Hours Tracker",
+      "title": "Deep Peak Hours Tracker",
       "properties": {
-        "api-peak-hours-tracker.notifications": {
+        "deep-peak-hours-tracker.notifications": {
           "order": 1,
           "type": "boolean",
           "default": true,
-          "title": "%api-peak-hours-tracker.config.notifications.title%",
-          "description": "%api-peak-hours-tracker.config.notifications.description%"
+          "title": "%deep-peak-hours-tracker.config.notifications.title%",
+          "description": "%deep-peak-hours-tracker.config.notifications.description%"
         },
-        "api-peak-hours-tracker.peakSoonMinutes": {
+        "deep-peak-hours-tracker.peakSoonMinutes": {
           "order": 2,
           "type": "number",
           "default": 5,
           "minimum": 0,
           "maximum": 30,
-          "title": "%api-peak-hours-tracker.config.peakSoonMinutes.title%",
-          "description": "%api-peak-hours-tracker.config.peakSoonMinutes.description%"
+          "title": "%deep-peak-hours-tracker.config.peakSoonMinutes.title%",
+          "description": "%deep-peak-hours-tracker.config.peakSoonMinutes.description%"
         },
-        "api-peak-hours-tracker.peakTransitionBufferMinutes": {
+        "deep-peak-hours-tracker.peakTransitionBufferMinutes": {
           "order": 3,
           "type": "number",
           "default": 1,
           "minimum": 0,
           "maximum": 20,
-          "title": "%api-peak-hours-tracker.config.peakTransitionBufferMinutes.title%",
-          "description": "%api-peak-hours-tracker.config.peakTransitionBufferMinutes.description%"
+          "title": "%deep-peak-hours-tracker.config.peakTransitionBufferMinutes.title%",
+          "description": "%deep-peak-hours-tracker.config.peakTransitionBufferMinutes.description%"
         },
-        "api-peak-hours-tracker.postPeakMinutes": {
+        "deep-peak-hours-tracker.postPeakMinutes": {
           "order": 4,
           "type": "number",
           "default": 5,
           "minimum": 0,
           "maximum": 20,
-          "title": "%api-peak-hours-tracker.config.postPeakMinutes.title%",
-          "description": "%api-peak-hours-tracker.config.postPeakMinutes.description%"
+          "title": "%deep-peak-hours-tracker.config.postPeakMinutes.title%",
+          "description": "%deep-peak-hours-tracker.config.postPeakMinutes.description%"
         }
       }
     }

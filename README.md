@@ -1,6 +1,6 @@
 # Deep Peak Hours Tracker
 
-[![VS Code Marketplace](https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=mervick.api-peak-hours-tracker)
+[![VS Code Marketplace](https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=mervick.deep-peak-hours-tracker)
 [![VS Code version](https://img.shields.io/badge/VS%20Code-^1.85.0-blue?logo=visualstudiocode)](https://code.visualstudio.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![No API Key Required](https://img.shields.io/badge/No%20API%20Key-Required?%20No!-brightgreen)](https://github.com/mervick/deepseek-peak-hours)
@@ -10,10 +10,10 @@
 
 **Track DeepSeek API peak/off‑peak hours directly in your VS Code status bar** – reduce costs, avoid throttling, and optimize your workflow by running non‑urgent tasks during lower‑cost periods.
 
-> 💡 **No API Key, No Internet** – works entirely offline using UTC time. No registration, no data collection.
+> 💡 **No API Key, No Internet** – works entirely offline using UTC time.
 
 <p align="center">
-  <img src="assets/preview.png" alt="API Peak Hours Tracker Preview" width="414" height="316" />
+  <img src="assets/preview.png" alt="Deep Peak Hours Tracker Preview" width="414" height="316" />
   <br />
   <sub>Real-time status hover preview in Dark Theme</sub>
 </p>
@@ -66,10 +66,10 @@ This extension **does not require a DeepSeek API key** and **never makes network
 
 | Setting | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `api-peak-hours-tracker.notifications` | boolean | `true` | Show notifications when the peak-hours status changes |
-| `api-peak-hours-tracker.peakSoonMinutes` | number | `5` | Minutes before peak starts to show "Peak soon" status |
-| `api-peak-hours-tracker.peakTransitionBufferMinutes` | number | `1` | Buffer zone length at peak boundaries |
-| `api-peak-hours-tracker.postPeakMinutes` | number | `5` | Minutes after peak ends to show "Off‑peak soon" |
+| `deep-peak-hours-tracker.notifications` | boolean | `true` | Show notifications when the peak-hours status changes |
+| `deep-peak-hours-tracker.peakSoonMinutes` | number | `5` | Minutes before peak starts to show "Peak soon" status |
+| `deep-peak-hours-tracker.peakTransitionBufferMinutes` | number | `1` | Buffer zone length at peak boundaries |
+| `deep-peak-hours-tracker.postPeakMinutes` | number | `5` | Minutes after peak ends to show "Off‑peak soon" |
 
 
 ## Data & Privacy

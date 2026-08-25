@@ -1,10 +1,10 @@
 {
-  "api-peak-hours-tracker.config.peakSoonMinutes.title": "Peak soon 提示窗口",
-  "api-peak-hours-tracker.config.peakSoonMinutes.description": "Peak 开始前多少分钟显示 Peak soon（0-30）。",
-  "api-peak-hours-tracker.config.peakTransitionBufferMinutes.title": "Peak 状态过渡缓冲时间",
-  "api-peak-hours-tracker.config.peakTransitionBufferMinutes.description": "Peak 开始前提前多少分钟开启（0-20）。",
-  "api-peak-hours-tracker.config.postPeakMinutes.title": "Peak 后黄色过渡时段",
-  "api-peak-hours-tracker.config.postPeakMinutes.description": "Peak 结束后多少分钟保持黄色过渡状态（0-20）。",
-  "api-peak-hours-tracker.config.notifications.title": "显示状态切换通知",
-  "api-peak-hours-tracker.config.notifications.description": "高峰时段状态发生变化时显示通知。"
+  "deep-peak-hours-tracker.config.peakSoonMinutes.title": "Peak soon 提示窗口",
+  "deep-peak-hours-tracker.config.peakSoonMinutes.description": "Peak 开始前多少分钟显示 Peak soon（0-30）。",
+  "deep-peak-hours-tracker.config.peakTransitionBufferMinutes.title": "Peak 状态过渡缓冲时间",
+  "deep-peak-hours-tracker.config.peakTransitionBufferMinutes.description": "Peak 开始前提前多少分钟开启（0-20）。",
+  "deep-peak-hours-tracker.config.postPeakMinutes.title": "Peak 后黄色过渡时段",
+  "deep-peak-hours-tracker.config.postPeakMinutes.description": "Peak 结束后多少分钟保持黄色过渡状态（0-20）。",
+  "deep-peak-hours-tracker.config.notifications.title": "显示状态切换通知",
+  "deep-peak-hours-tracker.config.notifications.description": "高峰时段状态发生变化时显示通知。"
 }

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 
 export function getConfig(): vscode.WorkspaceConfiguration {
-  return vscode.workspace.getConfiguration('api-peak-hours-tracker');
+  return vscode.workspace.getConfiguration('deep-peak-hours-tracker');
 }
 
 const DEBUG_ENABLED = false;
@@ -27,10 +27,10 @@ export function getPeakHoursNow(): Date {
     debugClockRaw = raw;
     debugClockStartMs = timestamp;
     debugClockRealStartMs = Date.now();
-    console.log('[api-peak-hours-tracker] debug clock started:', raw);
+    console.log('[deep-peak-hours-tracker] debug clock started:', raw);
   }
   const simulated = new Date(debugClockStartMs + Date.now() - debugClockRealStartMs);
-  console.log('[api-peak-hours-tracker] time check:', 'real=', new Date().toISOString(), 'debugUtc=', simulated.toISOString());
+  console.log('[deep-peak-hours-tracker] time check:', 'real=', new Date().toISOString(), 'debugUtc=', simulated.toISOString());
   return simulated;
 }
 
