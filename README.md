@@ -6,9 +6,11 @@
 [![No API Key Required](https://img.shields.io/badge/No%20API%20Key-Required?%20No!-brightgreen)](https://github.com/mervick/deepseek-peak-hours)
 [![Offline First](https://img.shields.io/badge/Offline-100%25-blue)](https://github.com/mervick/deepseek-peak-hours)
 
-**Visual Studio Code extension** for tracking DeepSeek API peak hours, displaying peak/off-peak status directly in your status bar and helping you optimize API costs by choosing the right time to run your workloads.
+> **Disclaimer:** This extension is an independent, open‑source project created by a community developer. It is **not affiliated with, endorsed by, or sponsored by DeepSeek** or its parent company.
 
-> **💡 No API Key Required** – Works completely offline using only UTC time. No registration, no internet needed.
+**Track DeepSeek API peak/off‑peak hours directly in your VS Code status bar** – reduce costs, avoid throttling, and optimize your workflow by running non‑urgent tasks during lower‑cost periods.
+
+> 💡 **No API Key, No Internet** – works entirely offline using UTC time. No registration, no data collection.
 
 <p align="center">
   <img src="assets/preview.png" alt="API Peak Hours Tracker Preview" width="414" height="316" />
@@ -18,20 +20,16 @@
 
 ## Why This Extension Matters
 
-DeepSeek API uses **peak/off-peak pricing** to manage resource allocation efficiently. During peak hours, prices are **2×** the regular rate across all billing items. Off-peak rates are **half** of peak rates, making it significantly cheaper to run inference during low-traffic periods.
-
-For example, with the flagship **DeepSeek-V4-Pro** model:
-- **Peak hour** cost for 1M output tokens: **¥27.00**
-- **Off-peak** cost for 1M output tokens: **¥13.50**
+DeepSeek API uses **peak/off‑peak pricing** to manage resource allocation efficiently. During peak hours, prices are **2×** the regular rate across all billing items. Off‑peak rates are **half** of peak rates, making it significantly cheaper to run inference during low‑traffic periods.
 
 Being aware of when peak hours occur helps you:
-- **Reduce costs** — schedule non-urgent batch jobs during off-peak hours
-- **Avoid throttling** — peak periods may experience higher latency and stricter rate limits
-- **Plan development** — align your API usage with cost-effective time windows
 
-> **Official pricing details:** [DeepSeek API Models & Pricing](https://api-docs.deepseek.com/quick_start/pricing/)
+- **Reduce costs** – schedule non‑urgent batch jobs during off‑peak hours
+- **Avoid throttling** – peak periods may experience higher latency and stricter rate limits
+- **Plan development** – align your API usage with cost‑effective time windows
 
----
+> **DeepSeek pricing details:** [DeepSeek API Models & Pricing](https://api-docs.deepseek.com/quick_start/pricing/)
+
 
 ## Peak Hours Schedule
 
@@ -40,25 +38,30 @@ Being aware of when peak hours occur helps you:
 | **UTC** | 01:00–04:00 and 06:00–10:00 |
 | **Beijing Time (UTC+8)** | 09:00–12:00 and 14:00–18:00 |
 
-**Weekends** (Saturday–Sunday) are entirely off-peak  
-All other hours outside the defined peak windows are off-peak  
+- **Weekends** (Saturday & Sunday) are entirely off-peak  
+- All other hours outside are off-peak  
 
----
+> **Source:** [DeepSeek API Models & Pricing — footnote (1)](https://api-docs.deepseek.com/quick_start/pricing/)
+
+
+## How It Works
+
+This extension **does not require a DeepSeek API key** and **never makes network requests**. It simply reads the current UTC time and compares it against DeepSeek's official peak‑hour schedule. All logic runs locally on your machine – no data is collected, sent, or stored.
+
 
 ## Features
 
 - **Real‑time status** — displays Peak / Peak soon / Off‑peak soon / Off‑peak in the VS Code status bar
 
 - **Color‑coded alerts**:
-  - 🟥 **Peak** — Peak hours (higher cost, higher latency)
-  - 🟨 **Buffer / soon** — Transition period (Peak soon or Off‑peak soon)
-  - **Off‑peak** — lower cost, better performance
+  - 🔴 **Peak** — Peak hours (higher cost, higher latency)
+  - 🟡 **Buffer / soon** — Transition period (Peak soon or off‑peak soon)
+  - 🟢 **Off‑peak** — lower cost, better performance
+
 - **Hover preview** — hover over the status bar item to see a detailed dashboard with a countdown timer, timeline, and impact forecast.
 - **Smart refresh** - updates every 5 minutes normally, and every **30 seconds** near scheduled transitions
 - **Transition notifications** - optionally show a notification when the peak-hours status changes
-- **Debug mode** - enable `api-peak-hours.debug` for detailed logs; `api-peak-hours.debugUtcTime` accepts an ISO UTC start time to simulate elapsed time
 
----
 
 ## Configuration
 
@@ -68,17 +71,28 @@ All other hours outside the defined peak windows are off-peak
 | `api-peak-hours.peakSoonMinutes` | number | `5` | Minutes before peak starts to show "Peak soon" status |
 | `api-peak-hours.peakTransitionBufferMinutes` | number | `1` | Buffer zone length at peak boundaries |
 | `api-peak-hours.postPeakMinutes` | number | `5` | Minutes after peak ends to show "Off‑peak soon" |
-| `api-peak-hours.debug` | boolean | `false` | Enable debug logging |
-| `api-peak-hours.debugUtcTime` | string | `""` | ISO UTC start time for time simulation in debug mode |
 
----
 
-## Requirements
+## Privacy & Security
 
-- Visual Studio Code 1.85.0 or later
-- No DeepSeek API key is required
-- Internet access is not required
+**Your data stays on your machine.** This extension:
 
-## Installation
+- ❌ Does **not** collect any usage data, telemetry, or personal information
+- ❌ Does **not** make any network requests – works entirely offline
+- ❌ Does **not** require any API keys, tokens, or credentials
+- ❌ Does **not** read or write files outside its own packaged resources
+- ✅ Only uses the current UTC time to determine peak/off‑peak status
 
-Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=mervick.api-peak-hours-tracker) or search for `API Peak Hours Tracker` in the Extensions view (`Ctrl+Shift+X`).
+All logic is local and deterministic – you can review the full source code in our [public repository](https://github.com/mervick/api-peak-hours-tracker).
+
+
+## Disclaimer
+
+This extension is **not affiliated with, endorsed by, or sponsored by DeepSeek**. It is an independent, open‑source tool created by a community developer to help users track peak/off‑peak hours based on publicly available information.
+
+All product names, logos, and brands are property of their respective owners. Use of the DeepSeek name is for identification purposes only and does not imply any association with DeepSeek.
+
+This tool is provided "as is" for informational purposes only. Always refer to the official DeepSeek documentation for the most accurate and up‑to‑date pricing and peak‑hour schedules.
+
+For official information, please refer to the [DeepSeek API Documentation](https://api-docs.deepseek.com/).
+
