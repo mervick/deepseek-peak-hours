@@ -1,4 +1,4 @@
-# API Peak Hours Tracker
+# Deep Peak Hours Tracker
 
 [![VS Code Marketplace](https://raster.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=mervick.api-peak-hours-tracker)
 [![VS Code version](https://img.shields.io/badge/VS%20Code-^1.85.0-blue?logo=visualstudiocode)](https://code.visualstudio.com/)
@@ -33,13 +33,12 @@ Being aware of when peak hours occur helps you:
 
 ## Peak Hours Schedule
 
-| Time Zone | Peak Hours |
+| Time Zone | Peak Hours | 
 | :--- | :--- |
 | **UTC** | 01:00–04:00 and 06:00–10:00 |
-| **Beijing Time (UTC+8)** | 09:00–12:00 and 14:00–18:00 |
 
-- **Weekends** (Saturday & Sunday) are entirely off-peak  
-- All other hours outside are off-peak  
+**Weekends** (Saturday & Sunday) are entirely off-peak.  
+All other hours outside are off-peak.  
 
 > **Source:** [DeepSeek API Models & Pricing — footnote (1)](https://api-docs.deepseek.com/quick_start/pricing/)
 
@@ -73,17 +72,15 @@ This extension **does not require a DeepSeek API key** and **never makes network
 | `api-peak-hours-tracker.postPeakMinutes` | number | `5` | Minutes after peak ends to show "Off‑peak soon" |
 
 
-## Privacy & Security
+## Data & Privacy
 
-**Your data stays on your machine.** This extension:
+This extension:
 
 - ❌ Does **not** collect any usage data, telemetry, or personal information
 - ❌ Does **not** make any network requests – works entirely offline
 - ❌ Does **not** require any API keys, tokens, or credentials
 - ❌ Does **not** read or write files outside its own packaged resources
 - ✅ Only uses the current UTC time to determine peak/off‑peak status
-
-All logic is local and deterministic – you can review the full source code in our [public repository](https://github.com/mervick/api-peak-hours-tracker).
 
 
 ## Disclaimer
