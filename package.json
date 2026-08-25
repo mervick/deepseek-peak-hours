@@ -90,7 +90,7 @@
     }
   },
   "scripts": {
-    "compile": "tsc -p ./ && esbuild out/*.js --outdir=out --minify --sourcemap --allow-overwrite",
+    "compile": "tsc -p ./ && esbuild out/*.js --outdir=out --sourcemap --allow-overwrite",
     "watch": "tsc -watch -p ./",
     "build": "rm -rf out && npm run compile && npx --yes @vscode/vsce package --no-dependencies",
     "publish": "rm -rf out && npm run compile && npx --yes @vscode/vsce publish",
