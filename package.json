@@ -1,8 +1,8 @@
 {
   "name": "deep-peak-hours-tracker",
   "displayName": "Deep Peak Hours Tracker",
-  "description": "Track DeepSeek API peak and off-peak hours in the VS Code status bar",
-  "version": "0.1.2",
+  "description": "Unofficial DeepSeek peak/off-peak hours tracker in the VS Code status bar",
+  "version": "0.1.0",
   "publisher": "mervick",
   "author": {
     "name": "Andrey Izman",
@@ -27,10 +27,10 @@
   "main": "./out/extension.js",
   "contributes": {
     "icons": {
-      "deepseek-logo": {
-        "description": "DeepSeek logo",
+      "deep-peak-hours-tracker-logo": {
+        "description": "Deep Peak Hours Tracker logo",
         "default": {
-          "fontPath": "./media/deepseek-icons.ttf",
+          "fontPath": "./media/icon.ttf",
           "fontCharacter": "\\E001"
         }
       }
